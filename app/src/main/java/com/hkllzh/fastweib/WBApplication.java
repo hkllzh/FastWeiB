@@ -7,6 +7,7 @@ import com.activeandroid.Configuration;
 import com.hkllzh.fastweib.util.ACache;
 import com.hkllzh.fastweib.util.ImageLoaderOptions;
 import com.hkllzh.fastweib.util.LogUtil;
+import com.hkllzh.fastweib.util.SPUtil;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -54,6 +55,7 @@ public class WBApplication extends Application {
         ACache.init(this);
 
         // 全局配置
+        SPUtil.init(this, "sp_wp");
 
     }
 
