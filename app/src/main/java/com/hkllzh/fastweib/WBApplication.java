@@ -55,7 +55,7 @@ public class WBApplication extends Application {
         ACache.init(this);
 
         // 全局配置
-        SPUtil.init(this, "sp_wp");
+        SPUtil.init(this, "sp_wei_b");
 
     }
 

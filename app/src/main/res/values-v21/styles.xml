@@ -2,6 +2,7 @@
 
     <style name="WBTheme" parent="android:Theme.Material.Light">
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:textColor">@color/black_1</item>
         <item name="android:textSize">@dimen/text_size_normal</item>¬

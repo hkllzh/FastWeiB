@@ -1,5 +1,6 @@
 package com.hkllzh.fastweib;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -14,13 +15,15 @@ import com.hkllzh.fastweib.util.SPUtil;
  * <p/>
  * com.hkllzh.fastweib
  */
-public class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity extends FragmentActivity {
 
     protected NetRequest netRequest;
 
     protected static final SPUtil spUtil;
     protected static final int W_PX;
     protected static final int H_PX;
+    
+    protected Activity mActivity;
 
     static {
         spUtil = SPUtil.getInstance();
@@ -31,6 +34,22 @@ public class BaseActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        netRequest = new NetRequest(this);
+        mActivity = this;
+        netRequest = new NetRequest(mActivity);
+        
+        setContentView(getContentViewId());
+        initView();
+        initData();
+        setListener();
+        
     }
+
+    public abstract int getContentViewId();
+
+    protected abstract void initView();
+
+    protected abstract void initData();
+
+    protected abstract void setListener();
+    
 }
