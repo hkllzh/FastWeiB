@@ -12,7 +12,7 @@ import com.google.gson.JsonObject;
 public abstract class RequestHandler {
     public abstract void start();
 
-    public abstract void success(JsonObject jsonObject);
+    public abstract void success(String response);
 
     public abstract void failure(String responseBody, Throwable error);
 

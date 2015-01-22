@@ -3,9 +3,6 @@ package com.hkllzh.fastweib.net;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSyntaxException;
 import com.hkllzh.fastweib.util.ACache;
 import com.hkllzh.fastweib.util.LogUtil;
 import com.hkllzh.fastweib.util.MD5Util;
@@ -57,19 +54,10 @@ public class NetRequest {
         if (isUseCache) {
             String cacheData = ACache.getInstance().getAsString(getCacheKey(url, params));
             if (!TextUtils.isEmpty(cacheData)) {
-
-                JsonObject jsonObject = null;
-                try {
-                    jsonObject = new Gson().fromJson(cacheData, JsonObject.class);
-                } catch (JsonSyntaxException e) {
-                    e.printStackTrace();
-                }
-                if (null != jsonObject) {
-                    handler.start();
-                    handler.success(jsonObject);
-                    handler.finish();
-                    return;
-                }
+                handler.start();
+                handler.success(cacheData);
+                handler.finish();
+                return;
             }
         }
         httpClient.get(mContext, url, params, new AsyncHttpResponseHandler() {
@@ -109,17 +97,7 @@ public class NetRequest {
                     ACache.getInstance().put(getCacheKey(url, params), data, cacheTime);
                 }
                 // 最后交给外面的程序进行处理
-                JsonObject j = null;
-                try {
-                    j = new Gson().fromJson(data, JsonObject.class);
-                } catch (JsonSyntaxException e) {
-                    e.printStackTrace();
-                }
-
-                if (null==j){
-                    j = new JsonObject();
-                }
-                handler.success(j);
+                handler.success(data);
             }
 
             @Override
@@ -173,7 +151,7 @@ public class NetRequest {
                 String data = new String(responseBody);
                 printUrlAndResponse(url, data);
                 handler.customCacheData(data);
-                handler.success(new Gson().fromJson(data, JsonObject.class));
+                handler.success(data);
             }
 
             @Override
