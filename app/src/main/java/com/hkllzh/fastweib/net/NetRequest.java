@@ -85,7 +85,7 @@ public class NetRequest {
             @Override
             public void onStart() {
                 startTime = System.currentTimeMillis();
-                printUrlAndParams(url, params);
+                printUrlAndParams("get", url, params);
                 handler.start();
             }
 
@@ -109,7 +109,17 @@ public class NetRequest {
                     ACache.getInstance().put(getCacheKey(url, params), data, cacheTime);
                 }
                 // 最后交给外面的程序进行处理
-                handler.success(new Gson().fromJson(data, JsonObject.class));
+                JsonObject j = null;
+                try {
+                    j = new Gson().fromJson(data, JsonObject.class);
+                } catch (JsonSyntaxException e) {
+                    e.printStackTrace();
+                }
+
+                if (null==j){
+                    j = new JsonObject();
+                }
+                handler.success(j);
             }
 
             @Override
@@ -143,7 +153,7 @@ public class NetRequest {
             @Override
             public void onStart() {
                 startTime = System.currentTimeMillis();
-                printUrlAndParams(url, params);
+                printUrlAndParams("post", url, params);
                 handler.start();
             }
 
@@ -208,11 +218,15 @@ public class NetRequest {
     /**
      * 打印url和此请求的参数
      *
+     * @param method 请求方法
      * @param url    请求url
      * @param params 请求参数
      */
-    private void printUrlAndParams(String url, RequestParams params) {
-        LogUtil.d(isShowLog, TAG + url + " - params:" + params.toString());
+    private void printUrlAndParams(String method, String url, RequestParams params) {
+        if (null == params) {
+            params = new RequestParams();
+        }
+        LogUtil.d(isShowLog, TAG + method + " - " + url + " - params:" + params.toString());
     }
 
 

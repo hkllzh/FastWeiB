@@ -37,7 +37,7 @@ public class SPUtil {
         mFileName = fileName;
     }
 
-    private static SPUtil getInstance() {
+    public static SPUtil getInstance() {
         if (null == spUtil) {
             spUtil = new SPUtil();
         }
