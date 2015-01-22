@@ -31,8 +31,9 @@ public class SplashActivity extends BaseActivity {
             @Override
             public void run() {
                 startActivity(new Intent(mActivity, IndexActivity.class));
+                finish();
             }
-        }, 500);
+        }, 1500);
     }
 
     @Override

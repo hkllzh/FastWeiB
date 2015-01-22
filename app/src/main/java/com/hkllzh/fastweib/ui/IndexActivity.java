@@ -27,7 +27,7 @@ public class IndexActivity extends BaseActivity {
         netRequest.get("http://www.baidu.com", null, new RequestHandler() {
             @Override
             public void start() {
-
+                showLoading();
             }
 
             @Override
@@ -42,7 +42,7 @@ public class IndexActivity extends BaseActivity {
 
             @Override
             public void finish() {
-
+                dismissLoading();
             }
         });
     }

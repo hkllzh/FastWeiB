@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 
 import com.hkllzh.fastweib.net.NetRequest;
 import com.hkllzh.fastweib.util.SPUtil;
+import com.hkllzh.fastweib.view.LoadingDialog;
 
 
 /**
@@ -22,8 +23,10 @@ public abstract class BaseActivity extends FragmentActivity {
     protected static final SPUtil spUtil;
     protected static final int W_PX;
     protected static final int H_PX;
-    
+
     protected Activity mActivity;
+
+    private LoadingDialog loadingDialog;
 
     static {
         spUtil = SPUtil.getInstance();
@@ -36,12 +39,35 @@ public abstract class BaseActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         mActivity = this;
         netRequest = new NetRequest(mActivity);
-        
+
         setContentView(getContentViewId());
         initView();
         initData();
         setListener();
-        
+
+    }
+
+    protected void showLoading() {
+        showLoading("");
+    }
+    
+    protected void showLoading(String text) {
+        if (null == loadingDialog) {
+            loadingDialog = new LoadingDialog(mActivity);
+        }
+
+        loadingDialog.setShowText(text);
+
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show();
+        }
+    }
+    
+
+    protected void dismissLoading() {
+        if (null != loadingDialog && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
+        }
     }
 
     public abstract int getContentViewId();
@@ -51,5 +77,5 @@ public abstract class BaseActivity extends FragmentActivity {
     protected abstract void initData();
 
     protected abstract void setListener();
-    
+
 }
