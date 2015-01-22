@@ -22,7 +22,7 @@ public class MainActivity extends BaseActivity {
             }
 
             @Override
-            public void success(JsonObject jsonObject) {
+            public void success(String response) {
 
             }
 
