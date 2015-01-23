@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
+import com.hkllzh.fastweib.auth.AccessTokenKeeper;
 import com.hkllzh.fastweib.net.NetRequest;
 import com.hkllzh.fastweib.util.SPUtil;
 import com.hkllzh.fastweib.view.LoadingDialog;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 
 /**
@@ -28,6 +30,9 @@ public abstract class BaseActivity extends FragmentActivity {
 
     private LoadingDialog loadingDialog;
 
+    // 微博token类
+    protected Oauth2AccessToken mAccessToken;
+
     static {
         spUtil = SPUtil.getInstance();
         W_PX = spUtil.getInt(C.SP.SCREEN_WIDTH, 0);
@@ -39,6 +44,7 @@ public abstract class BaseActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         mActivity = this;
         netRequest = NetRequest.getInstance();
+        mAccessToken = AccessTokenKeeper.readAccessToken(mActivity);
 
         setContentView(getContentViewId());
         initView();

@@ -129,6 +129,19 @@ public class NetRequest {
         get(url, params, handler, isUseCache, DEFAULT_CACHE_TIME);
     }
 
+    public void get(UrlParamsBean urlParamsBean, final RequestHandler handler, final boolean isUseCache, final int cacheTime) {
+        get(urlParamsBean.url, urlParamsBean.params, handler, isUseCache, cacheTime);
+    }
+
+    public void get(UrlParamsBean urlParamsBean, final RequestHandler handler) {
+        get(urlParamsBean, handler, false, 0);
+    }
+
+    public void get(UrlParamsBean urlParamsBean, final RequestHandler handler, final boolean isUseCache) {
+        get(urlParamsBean, handler, isUseCache, DEFAULT_CACHE_TIME);
+    }
+
+
     public void post(final String url, final RequestParams params, final RequestHandler handler) {
         httpClient.post(mContext, url, params, new AsyncHttpResponseHandler() {
 
