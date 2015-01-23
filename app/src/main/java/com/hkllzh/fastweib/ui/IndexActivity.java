@@ -5,7 +5,7 @@ import android.widget.TextView;
 import com.hkllzh.fastweib.BaseActivity;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.net.RequestHandler;
-import com.hkllzh.fastweib.net.UrlParams;
+import com.hkllzh.fastweib.net.WeiBoApi;
 
 /**
  * 项目首页
@@ -30,7 +30,7 @@ public class IndexActivity extends BaseActivity {
     @Override
     protected void initData() {
 
-        netRequest.get(UrlParams.UsersShow(mAccessToken), new RequestHandler() {
+        netRequest.get(WeiBoApi.UsersShow(mAccessToken), new RequestHandler() {
             @Override
             public void start() {
                 showLoading();

@@ -28,8 +28,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e783163b-7dc1-406a-b82d-c2ff7cbbdcef" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/Apis.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/Apis.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dictionaries/lizheng.xml" afterPath="$PROJECT_DIR$/.idea/dictionaries/lizheng.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/UrlParams.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/Apis.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/WeiBoApi.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/ui/IndexActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/ui/IndexActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="FastWeiB.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,20 +54,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="IndexActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="IndexActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/ui/IndexActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="960">
-              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.516129" vertical-offset="160" max-vertical-offset="1040">
+              <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
               <folding>
-                <element signature="e#512#513#0" expanded="true" />
-                <element signature="e#573#574#0" expanded="true" />
-                <element signature="e#758#759#0" expanded="true" />
-                <element signature="e#803#804#0" expanded="true" />
-                <element signature="e#877#878#0" expanded="true" />
-                <element signature="e#933#934#0" expanded="true" />
-                <element signature="e#1101#1102#0" expanded="true" />
-                <element signature="e#1149#1150#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#511#512#0" expanded="true" />
+                <element signature="e#572#573#0" expanded="true" />
+                <element signature="e#756#757#0" expanded="true" />
+                <element signature="e#801#802#0" expanded="true" />
+                <element signature="e#875#876#0" expanded="true" />
+                <element signature="e#931#932#0" expanded="true" />
+                <element signature="e#1099#1100#0" expanded="true" />
+                <element signature="e#1147#1148#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WeiBoApi.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/WeiBoApi.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="688">
+              <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -83,33 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UrlParams.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/UrlParams.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="640">
-              <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="UrlParamsBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/UrlParamsBean.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
               <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Apis.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/Apis.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36129034" vertical-offset="0" max-vertical-offset="620">
-              <caret line="14" column="78" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
               <folding />
             </state>
           </provider>
@@ -738,10 +731,11 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/BaseActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/bean/UrlParamsBean.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/UrlParamsBean.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/UrlParams.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/NetRequest.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/ui/IndexActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/Apis.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/UrlParams.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/ui/IndexActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/WeiBoApi.java" />
       </list>
     </option>
   </component>
@@ -1628,14 +1622,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/UrlParamsBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
-          <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/NetRequest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="662" max-vertical-offset="2896">
@@ -1646,38 +1632,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/ui/IndexActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/UrlParamsBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="144" max-vertical-offset="960">
-          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
-          <folding>
-            <element signature="e#512#513#0" expanded="true" />
-            <element signature="e#573#574#0" expanded="true" />
-            <element signature="e#758#759#0" expanded="true" />
-            <element signature="e#803#804#0" expanded="true" />
-            <element signature="e#877#878#0" expanded="true" />
-            <element signature="e#933#934#0" expanded="true" />
-            <element signature="e#1101#1102#0" expanded="true" />
-            <element signature="e#1149#1150#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="288">
+          <caret line="8" column="60" selection-start-line="8" selection-start-column="60" selection-end-line="8" selection-end-column="60" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/UrlParams.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/WeiBoApi.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="640">
-          <caret line="25" column="37" selection-start-line="25" selection-start-column="37" selection-end-line="25" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="688">
+          <caret line="30" column="32" selection-start-line="30" selection-start-column="32" selection-end-line="30" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/net/Apis.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/hkllzh/fastweib/ui/IndexActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36129034" vertical-offset="0" max-vertical-offset="620">
-          <caret line="14" column="78" selection-start-line="14" selection-start-column="78" selection-end-line="14" selection-end-column="78" />
-          <folding />
+        <state vertical-scroll-proportion="0.516129" vertical-offset="160" max-vertical-offset="1040">
+          <caret line="32" column="37" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#511#512#0" expanded="true" />
+            <element signature="e#572#573#0" expanded="true" />
+            <element signature="e#756#757#0" expanded="true" />
+            <element signature="e#801#802#0" expanded="true" />
+            <element signature="e#875#876#0" expanded="true" />
+            <element signature="e#931#932#0" expanded="true" />
+            <element signature="e#1099#1100#0" expanded="true" />
+            <element signature="e#1147#1148#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
