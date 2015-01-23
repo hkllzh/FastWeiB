@@ -5,6 +5,7 @@ import android.widget.TextView;
 import com.hkllzh.fastweib.BaseActivity;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.net.RequestHandler;
+import com.hkllzh.fastweib.net.UrlParams;
 
 /**
  * 项目首页
@@ -28,9 +29,8 @@ public class IndexActivity extends BaseActivity {
 
     @Override
     protected void initData() {
-        tvTest.setText("请求百度中。。。。。。");
 
-        netRequest.get("http://www.baidu.com", null, new RequestHandler() {
+        netRequest.get(UrlParams.UsersShow(mAccessToken), new RequestHandler() {
             @Override
             public void start() {
                 showLoading();
@@ -51,6 +51,7 @@ public class IndexActivity extends BaseActivity {
                 dismissLoading();
             }
         });
+
     }
 
     @Override

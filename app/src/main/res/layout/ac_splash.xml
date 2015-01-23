@@ -9,9 +9,19 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/tvTips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/hello_world" />
+        android:text="欢迎页面\n检查授权中。" />
+
+    <Button
+        android:id="@+id/btnAuth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:onClick="btnClickAuth"
+        android:text="授权"
+        android:visibility="gone" />
 
 </RelativeLayout>

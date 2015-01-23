@@ -16,7 +16,7 @@ public final class C {
     }
 
     public static final class WeiBo {
-        public static final String APP_KEY = "2045436852"; // 应用的APP_KEY 
+        public static final String APP_KEY = "2575248538"; // 应用的APP_KEY
         public static final String REDIRECT_URL = "http://www.sina.com";// 应用的回调页
         // 应用申请的高级权限
         public static final String SCOPE =
