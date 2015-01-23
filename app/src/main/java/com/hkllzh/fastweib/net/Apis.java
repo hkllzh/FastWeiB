@@ -11,5 +11,6 @@ public final class Apis {
     private Apis() {
     }
 
+    // http://open.weibo.com/wiki/2/users/show
     public static final String Users_Show = "https://api.weibo.com/2/users/show.json";
 }
