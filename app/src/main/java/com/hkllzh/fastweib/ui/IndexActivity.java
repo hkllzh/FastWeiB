@@ -6,7 +6,12 @@ import com.hkllzh.fastweib.BaseActivity;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.net.RequestHandler;
 
-
+/**
+ * 项目首页
+ * <p/>
+ *
+ * @author lizheng -- li396858359@163.com
+ */
 public class IndexActivity extends BaseActivity {
 
     private TextView tvTest;
@@ -24,6 +29,7 @@ public class IndexActivity extends BaseActivity {
     @Override
     protected void initData() {
         tvTest.setText("请求百度中。。。。。。");
+
         netRequest.get("http://www.baidu.com", null, new RequestHandler() {
             @Override
             public void start() {

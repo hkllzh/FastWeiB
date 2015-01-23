@@ -1,5 +1,6 @@
 package com.hkllzh.fastweib.net;
 
+import android.app.Application;
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -40,13 +41,25 @@ public class NetRequest {
     private static final String TAG = "* NetRequest * ";
     private static final boolean isShowLog = true;
 
-    private Context mContext;
+    private static Context mContext;
     private AsyncHttpClient httpClient;
 
     private static final int DEFAULT_CACHE_TIME = 7 * 24 * 60 * 60;//一周
 
-    public NetRequest(Context context) {
-        this.mContext = context;
+    private static NetRequest request;
+
+    public static void init(Application _app) {
+        mContext = _app;
+    }
+
+    public static NetRequest getInstance() {
+        if (null == request) {
+            request = new NetRequest();
+        }
+        return request;
+    }
+
+    private NetRequest() {
         httpClient = new AsyncHttpClient();
     }
 

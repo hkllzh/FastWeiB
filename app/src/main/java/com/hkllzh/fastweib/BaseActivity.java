@@ -38,7 +38,7 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = this;
-        netRequest = new NetRequest(mActivity);
+        netRequest = NetRequest.getInstance();
 
         setContentView(getContentViewId());
         initView();
@@ -50,7 +50,7 @@ public abstract class BaseActivity extends FragmentActivity {
     protected void showLoading() {
         showLoading("");
     }
-    
+
     protected void showLoading(String text) {
         if (null == loadingDialog) {
             loadingDialog = new LoadingDialog(mActivity);
@@ -62,7 +62,7 @@ public abstract class BaseActivity extends FragmentActivity {
             loadingDialog.show();
         }
     }
-    
+
 
     protected void dismissLoading() {
         if (null != loadingDialog && loadingDialog.isShowing()) {

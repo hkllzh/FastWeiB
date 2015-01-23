@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Configuration;
+import com.hkllzh.fastweib.net.NetRequest;
 import com.hkllzh.fastweib.util.ACache;
 import com.hkllzh.fastweib.util.ImageLoaderOptions;
 import com.hkllzh.fastweib.util.LogUtil;
@@ -56,6 +57,8 @@ public class WBApplication extends Application {
 
         // 全局配置
         SPUtil.init(this, "sp_wei_b");
+
+        NetRequest.init(this);
 
     }
 
