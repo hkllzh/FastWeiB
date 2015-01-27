@@ -46,8 +46,6 @@ public abstract class BaseFragment extends Fragment {
         if (activity instanceof BaseActivity) {
             mBaseActivity = (BaseActivity) activity;
         }
-        netRequest = NetRequest.getInstance();
-        mAccessToken = AccessTokenKeeper.readAccessToken(getActivity());
     }
 
     @Override
@@ -61,6 +59,9 @@ public abstract class BaseFragment extends Fragment {
         if (null == mBaseActivity) {
             loadingDialog = new LoadingDialog(getActivity());
         }
+
+        netRequest = NetRequest.getInstance();
+        mAccessToken = AccessTokenKeeper.readAccessToken(getActivity());
 
         initView();
         initData();

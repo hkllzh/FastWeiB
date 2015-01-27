@@ -1,5 +1,7 @@
 package com.hkllzh.fastweib.ui;
 
+import android.support.v4.app.NavUtils;
+
 import com.hkllzh.fastweib.BaseFragment;
 import com.hkllzh.fastweib.R;
 
@@ -19,12 +21,11 @@ public class IndexContentFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-
+        
     }
 
     @Override
     protected void initData() {
-
     }
 
     @Override
