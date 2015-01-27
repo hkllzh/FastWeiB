@@ -58,21 +58,29 @@ public abstract class BaseActivity extends FragmentActivity {
     }
 
     protected void showLoading(String text) {
-        if (null == loadingDialog) {
-            loadingDialog = new LoadingDialog(mActivity);
-        }
+        try {
+            if (null == loadingDialog) {
+                loadingDialog = new LoadingDialog(mActivity);
+            }
 
-        loadingDialog.setShowText(text);
+            loadingDialog.setShowText(text);
 
-        if (!loadingDialog.isShowing()) {
-            loadingDialog.show();
+            if (!loadingDialog.isShowing()) {
+                loadingDialog.show();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
 
     protected void dismissLoading() {
-        if (null != loadingDialog && loadingDialog.isShowing()) {
-            loadingDialog.dismiss();
+        try {
+            if (null != loadingDialog && loadingDialog.isShowing()) {
+                loadingDialog.dismiss();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
