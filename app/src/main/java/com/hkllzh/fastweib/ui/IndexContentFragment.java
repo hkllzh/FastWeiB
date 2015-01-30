@@ -42,6 +42,8 @@ public class IndexContentFragment extends BaseFragment {
     protected void initView() {
         swipeRefreshLayout = (SwipeRefreshLayout) getView().findViewById(R.id.swipeRefreshLayout);
         recyclerViewWbList = (RecyclerView) getView().findViewById(R.id.recyclerViewWbList);
+        swipeRefreshLayout.setColorSchemeResources(R.color.refresh_color_1, R.color.refresh_color_2,
+                R.color.refresh_color_3, R.color.refresh_color_4);
     }
 
     @Override
@@ -64,9 +66,9 @@ public class IndexContentFragment extends BaseFragment {
             @Override
             public void success(String response) {
                 HomeTimelineBean bean = new Gson().fromJson(response, HomeTimelineBean.class);
-                if (TextUtils.isEmpty(max_id)){
+                if (TextUtils.isEmpty(max_id)) {
                     wbListAdapter.setData(bean.statuses);
-                }else{
+                } else {
                     wbListAdapter.addMoreData(bean.statuses);
                 }
                 mMax_id = bean.max_id;

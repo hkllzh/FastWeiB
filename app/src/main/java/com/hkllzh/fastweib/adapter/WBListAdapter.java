@@ -33,9 +33,14 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
 
     @Override
     public void baseOnBindViewHolder(WBListViewHolder holder, int position) {
+        ImageLoader.getInstance().displayImage(mData.get(position).user.avatar_hd, holder.imavHeadPortrait);
         holder.tvName.setText(mData.get(position).user.screen_name);
         holder.tvTime.setText(WBTimeParseUtil.parse(mData.get(position).created_at).toString("hh:mm:ss"));
-        ImageLoader.getInstance().displayImage(mData.get(position).user.avatar_hd, holder.imavHeadPortrait);
+        holder.tvContent.setText(mData.get(position).text);
+
+        if (null != mData.get(position).retweeted_status) {
+            holder.tvRetweetedStatus.setText(mData.get(position).retweeted_status.text);
+        }
     }
 
     class WBListViewHolder extends RecyclerView.ViewHolder {
@@ -43,12 +48,17 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
         public ImageView imavHeadPortrait;
         public TextView tvName;
         public TextView tvTime;
+        public TextView tvContent;
+        public TextView tvRetweetedStatus;
 
         public WBListViewHolder(View itemView) {
             super(itemView);
             imavHeadPortrait = (ImageView) itemView.findViewById(R.id.imavHeadPortrait);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvTime = (TextView) itemView.findViewById(R.id.tvTime);
+            tvContent = (TextView) itemView.findViewById(R.id.tvContent);
+            tvRetweetedStatus = (TextView) itemView.findViewById(R.id.tvRetweetedStatus);
+
         }
     }
 
