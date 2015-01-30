@@ -35,7 +35,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
     public void baseOnBindViewHolder(WBListViewHolder holder, int position) {
         ImageLoader.getInstance().displayImage(mData.get(position).user.avatar_hd, holder.imavHeadPortrait);
         holder.tvName.setText(mData.get(position).user.screen_name);
-        holder.tvTime.setText(WBTimeParseUtil.parse(mData.get(position).created_at).toString("hh:mm:ss"));
+        holder.tvTime.setText(WBTimeParseUtil.parse(mData.get(position).created_at).toString("HH:mm:ss"));
         holder.tvContent.setText(mData.get(position).text);
 
         if (null != mData.get(position).retweeted_status) {

@@ -19,7 +19,7 @@ public class WBTimeParseUtil {
     private static HashMap<String, String> months;
 
     static {
-        formatter = DateTimeFormat.forPattern("yyyy-MM-dd hh:mm:ss");
+        formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
         months = new HashMap<>();
         months.put("Jan", "1");
         months.put("Feb", "2");
