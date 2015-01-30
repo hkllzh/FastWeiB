@@ -1,5 +1,7 @@
 package com.hkllzh.fastweib.net;
 
+import android.text.TextUtils;
+
 import com.loopj.android.http.RequestParams;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
@@ -54,13 +56,15 @@ public final class WeiBoApi {
      * feature	    false	int	过滤类型ID，0：全部、1：原创、2：图片、3：视频、4：音乐，默认为0。
      * trim_user	false	int	返回值中user字段开关，0：返回完整user字段、1：user字段仅返回user_id，默认为0。*
      * </pre>
+     * 
+     *  since_id,比这个新的。
      *
      * @return 地址&参数
      */
-    public static UrlParamsBean StatusesHome_timeline(Oauth2AccessToken accessToken) {
+    public static UrlParamsBean StatusesHome_timeline(Oauth2AccessToken accessToken, String max_id) {
         RequestParams params = new RequestParams();
-        params.add("access_token",accessToken.getToken());
-        
-        return new UrlParamsBean("https://api.weibo.com/2/statuses/home_timeline.json",params);
+        params.add("access_token", accessToken.getToken());
+        params.add("max_id", TextUtils.isEmpty(max_id) ? "0" : max_id);
+        return new UrlParamsBean("https://api.weibo.com/2/statuses/friends_timeline.json", params);
     }
 }

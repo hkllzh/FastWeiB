@@ -12,10 +12,10 @@ import java.util.Objects;
  */
 public class HomeTimelineBean {
     public ArrayList<StatusBean> statuses;
-    public ArrayList<Objects> advertises;
-    public ArrayList<Objects> ad;
+    // public ArrayList<Objects> advertises;
+    // public ArrayList<Objects> ad;
     public boolean hasvisible;
-    public int previous_cursor;
+    public String previous_cursor;
     public String next_cursor;
     public int total_number;
     public int interval;

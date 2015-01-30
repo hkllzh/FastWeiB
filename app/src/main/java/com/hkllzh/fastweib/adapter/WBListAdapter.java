@@ -7,20 +7,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hkllzh.fastweib.BaseRVAdapter;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.bean.StatusBean;
-import com.hkllzh.fastweib.util.LogUtil;
 import com.hkllzh.fastweib.util.WBTimeParseUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * 微博列表适配器
@@ -29,12 +20,10 @@ import java.util.Date;
  * <p/>
  * FastWeiB
  */
-public class WBListAdapter extends RecyclerView.Adapter<WBListAdapter.WBListViewHolder> {
+public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder, StatusBean> {
 
     private static final String TAG = "* WBListAdapter * ";
     private static final boolean isShowLog = true;
-
-    private ArrayList<StatusBean> statuses;
 
     @Override
     public WBListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -43,23 +32,10 @@ public class WBListAdapter extends RecyclerView.Adapter<WBListAdapter.WBListView
     }
 
     @Override
-    public void onBindViewHolder(WBListViewHolder holder, int position) {
-        holder.tvName.setText(statuses.get(position).user.screen_name);
-        holder.tvTime.setText(WBTimeParseUtil.parse(statuses.get(position).created_at).toString("hh:mm:ss"));
-        ImageLoader.getInstance().displayImage(statuses.get(position).user.avatar_hd,holder.imavHeadPortrait);
-    }
-
-    @Override
-    public int getItemCount() {
-        if (null == statuses) {
-            return 0;
-        }
-        return statuses.size();
-    }
-
-    public void setData(ArrayList<StatusBean> statuses) {
-        this.statuses = statuses;
-        this.notifyDataSetChanged();
+    public void baseOnBindViewHolder(WBListViewHolder holder, int position) {
+        holder.tvName.setText(mData.get(position).user.screen_name);
+        holder.tvTime.setText(WBTimeParseUtil.parse(mData.get(position).created_at).toString("hh:mm:ss"));
+        ImageLoader.getInstance().displayImage(mData.get(position).user.avatar_hd, holder.imavHeadPortrait);
     }
 
     class WBListViewHolder extends RecyclerView.ViewHolder {
