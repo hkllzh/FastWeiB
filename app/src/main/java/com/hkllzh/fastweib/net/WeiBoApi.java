@@ -65,6 +65,6 @@ public final class WeiBoApi {
         RequestParams params = new RequestParams();
         params.add("access_token", accessToken.getToken());
         params.add("max_id", TextUtils.isEmpty(max_id) ? "0" : max_id);
-        return new UrlParamsBean("https://api.weibo.com/2/statuses/friends_timeline.json", params);
+        return new UrlParamsBean("https://api.weibo.com/2/statuses/home_timeline.json", params);
     }
 }
