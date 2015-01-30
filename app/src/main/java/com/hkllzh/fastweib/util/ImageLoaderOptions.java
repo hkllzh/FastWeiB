@@ -25,7 +25,17 @@ public class ImageLoaderOptions {
                 .cacheOnDisc(true)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .imageScaleType(ImageScaleType.EXACTLY)
+                .build();
+    }
+
+    public static DisplayImageOptions normalOptionsWithDisplayer() {
+        return new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisc(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .imageScaleType(ImageScaleType.EXACTLY)
                 .displayer(new FadeInBitmapDisplayer(200))
                 .build();
     }
+    
 }

@@ -40,7 +40,7 @@ public abstract class BaseRVAdapter<VH extends RecyclerView.ViewHolder, T> exten
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         baseOnBindViewHolder((VH) holder, position);
-        if (getItemCount() > 0 && getItemCount() - 1 == position) {
+        if (getItemCount() > 1 && getItemCount() - 2 == position) {
             if (null != loadMore) {
                 loadMore.loadMore();
             }

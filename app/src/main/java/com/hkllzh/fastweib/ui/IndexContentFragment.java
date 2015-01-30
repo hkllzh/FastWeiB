@@ -13,7 +13,6 @@ import com.hkllzh.fastweib.adapter.WBListAdapter;
 import com.hkllzh.fastweib.bean.HomeTimelineBean;
 import com.hkllzh.fastweib.net.RequestHandler;
 import com.hkllzh.fastweib.net.WeiBoApi;
-import com.hkllzh.fastweib.util.LogUtil;
 
 /**
  * 首页的内容部分
@@ -60,7 +59,9 @@ public class IndexContentFragment extends BaseFragment {
         netRequest.get(WeiBoApi.StatusesHome_timeline(mAccessToken, max_id), new RequestHandler() {
             @Override
             public void start() {
-                showLoading();
+                if (TextUtils.isEmpty(max_id)) {
+                    showLoading();
+                }
             }
 
             @Override
@@ -99,7 +100,6 @@ public class IndexContentFragment extends BaseFragment {
             @Override
             public void loadMore() {
                 requestData(mMax_id);
-                LogUtil.e(isShowLog, TAG + "loadMore");
             }
         });
     }

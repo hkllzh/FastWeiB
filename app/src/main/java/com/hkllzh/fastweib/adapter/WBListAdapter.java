@@ -1,5 +1,6 @@
 package com.hkllzh.fastweib.adapter;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +40,10 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
         holder.tvContent.setText(mData.get(position).text);
 
         if (null != mData.get(position).retweeted_status) {
-            holder.tvRetweetedStatus.setText(mData.get(position).retweeted_status.text);
+            holder.cardViewRetweeted.setVisibility(View.VISIBLE);
+            holder.tvRetweetedStatus.setText("@"+mData.get(position).retweeted_status.user.screen_name+" "+mData.get(position).retweeted_status.text);
+        }else{
+            holder.cardViewRetweeted.setVisibility(View.GONE);
         }
     }
 
@@ -50,6 +54,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
         public TextView tvTime;
         public TextView tvContent;
         public TextView tvRetweetedStatus;
+        public CardView cardViewRetweeted;
 
         public WBListViewHolder(View itemView) {
             super(itemView);
@@ -58,7 +63,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
             tvTime = (TextView) itemView.findViewById(R.id.tvTime);
             tvContent = (TextView) itemView.findViewById(R.id.tvContent);
             tvRetweetedStatus = (TextView) itemView.findViewById(R.id.tvRetweetedStatus);
-
+            cardViewRetweeted = (CardView) itemView.findViewById(R.id.cardViewRetweeted);
         }
     }
 
