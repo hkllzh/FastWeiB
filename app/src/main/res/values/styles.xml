@@ -1,10 +1,15 @@
 <resources>
 
-    <style name="WBBaseTheme" parent="Theme.AppCompat.Light">
+    <style name="WBBaseTheme" parent="Theme.AppCompat">
+        <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@color/white</item>
-        <item name="android:textColor">@color/black_1</item>
+        <item name="android:textColor">@color/black_3</item>
         <item name="android:textSize">@dimen/text_size_normal</item>
+
+        <item name="colorPrimary">@color/material_blue_500</item>
+        <item name="colorPrimaryDark">@color/material_blue_700</item>
+        
     </style>
 
     <style name="WBTheme" parent="WBBaseTheme">
@@ -34,6 +39,12 @@
         <item name="android:backgroundDimEnabled">false</item>
         <!-- 动画效果 -->
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+    </style>
+    
+    <style name="line">
+        <item name="android:background">@color/line</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
     </style>
 
 </resources>

@@ -38,13 +38,13 @@ import org.apache.http.Header;
  */
 public class NetRequest {
 
-    private static final String TAG = "* NetRequest * ";
+    private static final String TAG = "* NetRequest *";
     private static final boolean isShowLog = true;
 
     private static Context mContext;
     private AsyncHttpClient httpClient;
 
-    private static final int DEFAULT_CACHE_TIME = 7 * 24 * 60 * 60;//一周
+    private static final int DEFAULT_CACHE_TIME = 15 * 60;// 15分钟
 
     private static NetRequest request;
 
@@ -67,6 +67,7 @@ public class NetRequest {
         if (isUseCache) {
             String cacheData = ACache.getInstance().getAsString(getCacheKey(url, params));
             if (!TextUtils.isEmpty(cacheData)) {
+                printUseCache(url, params, cacheData);
                 handler.start();
                 handler.success(cacheData);
                 handler.finish();
@@ -141,7 +142,6 @@ public class NetRequest {
         get(urlParamsBean, handler, isUseCache, DEFAULT_CACHE_TIME);
     }
 
-
     public void post(final String url, final RequestParams params, final RequestHandler handler) {
         httpClient.post(mContext, url, params, new AsyncHttpResponseHandler() {
 
@@ -188,6 +188,7 @@ public class NetRequest {
         });
     }
 
+
     /**
      * 打印url和此上传数据的进度
      *
@@ -196,7 +197,21 @@ public class NetRequest {
      * @param totalSize    总大小
      */
     private void printUrlAndProgress(String url, int bytesWritten, int totalSize) {
-        LogUtil.d(isShowLog, TAG + url + " - progress:" + String.format("Progress %d from %d (%2.0f%%)", bytesWritten, totalSize, (totalSize > 0) ? (bytesWritten * 1.0 / totalSize) * 100 : -1));
+        if (1 == totalSize || 0 == totalSize) {
+            return;
+        }
+        LogUtil.d(isShowLog, TAG + "\nurl:" + url + "\nprogress:" + String.format("Progress %d from %d (%2.0f%%)", bytesWritten, totalSize, (totalSize > 0) ? (bytesWritten * 1.0 / totalSize) * 100 : -1));
+    }
+
+    /**
+     * 打印使用缓存数据
+     *
+     * @param url       请求url
+     * @param params    请求参数
+     * @param cacheData 缓存数据
+     */
+    private void printUseCache(String url, RequestParams params, String cacheData) {
+        LogUtil.d(isShowLog, TAG + "\nurl:" + url + "\nparams:" + params.toString() + "\ncache:" + cacheData);
     }
 
     /**
@@ -206,7 +221,7 @@ public class NetRequest {
      * @param startTime url启动时间
      */
     private void printUrlAndTime(String url, long startTime) {
-        LogUtil.d(isShowLog, TAG + url + " - time:" + (System.currentTimeMillis() - startTime) + "ms");
+        LogUtil.d(isShowLog, TAG + "\nurl:" + url + "\ntime:" + (System.currentTimeMillis() - startTime) + "ms");
     }
 
     /**
@@ -216,7 +231,7 @@ public class NetRequest {
      * @param responseBody url的返回内容
      */
     private void printUrlAndResponse(String url, String responseBody) {
-        LogUtil.d(isShowLog, TAG + url + " - response:" + responseBody);
+        LogUtil.d(isShowLog, TAG + "\nurl:" + url + "\nresponse:" + responseBody);
     }
 
     /**
@@ -230,7 +245,7 @@ public class NetRequest {
         if (null == params) {
             params = new RequestParams();
         }
-        LogUtil.d(isShowLog, TAG + method + " - " + url + " - params:" + params.toString());
+        LogUtil.d(isShowLog, TAG + "\nurl:" + url + "\nmethod:" + method + "\nparams:" + params.toString());
     }
 
 

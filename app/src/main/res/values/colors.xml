@@ -1,5 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFFFFF</color>
-    <color name="black_1">#333333</color>
+    <color name="black_3">#333333</color>
+    <color name="black_6">#666666</color>
+    <color name="black_9">#999999</color>
+    <!-- http://www.google.com/design/spec/style/color.html#color-ui-color-application -->
+    <color name="material_blue_500">#2196f3</color>
+    <color name="material_blue_700">#1976d2</color>
+
+    <color name="line">#DDDDDD</color>
+
+    <color name="refresh_color_1">#2196f3</color>
+    <color name="refresh_color_2">#1976d2</color>
+    <color name="refresh_color_3">#2196f3</color>
+    <color name="refresh_color_4">#1976d2</color>
+
+    <!--<color name="refresh_color_1">#E51C23</color>-->
+    <!--<color name="refresh_color_2">#9C27B0</color>-->
+    <!--<color name="refresh_color_3">#3F51b5</color>-->
+    <!--<color name="refresh_color_4">#03A9F4</color>-->
+
 </resources>

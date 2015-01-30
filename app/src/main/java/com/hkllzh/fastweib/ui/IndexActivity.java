@@ -1,11 +1,11 @@
 package com.hkllzh.fastweib.ui;
 
-import android.widget.TextView;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.DrawerLayout;
 
 import com.hkllzh.fastweib.BaseActivity;
 import com.hkllzh.fastweib.R;
-import com.hkllzh.fastweib.net.RequestHandler;
-import com.hkllzh.fastweib.net.WeiBoApi;
 
 /**
  * 项目首页
@@ -15,7 +15,7 @@ import com.hkllzh.fastweib.net.WeiBoApi;
  */
 public class IndexActivity extends BaseActivity {
 
-    private TextView tvTest;
+    private DrawerLayout drawerLayout;
 
     @Override
     public int getContentViewId() {
@@ -24,34 +24,16 @@ public class IndexActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        tvTest = (TextView) findViewById(R.id.tvTest);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
     }
 
     @Override
     protected void initData() {
-
-        netRequest.get(WeiBoApi.UsersShow(mAccessToken), new RequestHandler() {
-            @Override
-            public void start() {
-                showLoading();
-            }
-
-            @Override
-            public void success(String response) {
-                tvTest.setText(response);
-            }
-
-            @Override
-            public void failure(String responseBody, Throwable error) {
-
-            }
-
-            @Override
-            public void finish() {
-                dismissLoading();
-            }
-        });
-
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.add(R.id.content_frame, new IndexContentFragment(), "content");
+        ft.add(R.id.left_drawer, new IndexLeftDrawerFragment(), "leftDrawer");
+        ft.commit();
     }
 
     @Override

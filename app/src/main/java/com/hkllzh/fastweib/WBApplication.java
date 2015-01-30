@@ -43,8 +43,8 @@ public class WBApplication extends Application {
         isRelease(false);
 
         // 错误处理
-        CrashHandler crashHandler = CrashHandler.getInstance();
-        crashHandler.init(this);
+//        CrashHandler crashHandler = CrashHandler.getInstance();
+//        crashHandler.init(this);
 
         // 数据库初始化
         // initDB();
