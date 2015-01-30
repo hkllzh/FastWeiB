@@ -13,7 +13,7 @@ import com.hkllzh.fastweib.R;
 
 /**
  * User: lizheng<br>
- * Email: lizheng@v1.cn<br>
+ * Email: li396858359@163.com<br>
  * 一个默认弹框的实现,使用是可以通过调整layout，style。更改为适合各自项目的弹框
  */
 public abstract class BaseDialog extends Dialog {
