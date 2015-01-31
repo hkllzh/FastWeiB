@@ -14,6 +14,8 @@ import com.hkllzh.fastweib.bean.StatusBean;
 import com.hkllzh.fastweib.util.WBTimeParseUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
+import org.joda.time.DateTime;
+
 /**
  * 微博列表适配器
  * <p/>
@@ -36,13 +38,13 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
     public void baseOnBindViewHolder(WBListViewHolder holder, int position) {
         ImageLoader.getInstance().displayImage(mData.get(position).user.avatar_hd, holder.imavHeadPortrait);
         holder.tvName.setText(mData.get(position).user.screen_name);
-        holder.tvTime.setText(WBTimeParseUtil.parse(mData.get(position).created_at).toString("HH:mm:ss"));
+        holder.tvTime.setText(time2Show(WBTimeParseUtil.parse(mData.get(position).created_at)));
         holder.tvContent.setText(mData.get(position).text);
 
         if (null != mData.get(position).retweeted_status) {
             holder.cardViewRetweeted.setVisibility(View.VISIBLE);
-            holder.tvRetweetedStatus.setText("@"+mData.get(position).retweeted_status.user.screen_name+" "+mData.get(position).retweeted_status.text);
-        }else{
+            holder.tvRetweetedStatus.setText("@" + mData.get(position).retweeted_status.user.screen_name + " " + mData.get(position).retweeted_status.text);
+        } else {
             holder.cardViewRetweeted.setVisibility(View.GONE);
         }
     }
@@ -65,6 +67,34 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
             tvRetweetedStatus = (TextView) itemView.findViewById(R.id.tvRetweetedStatus);
             cardViewRetweeted = (CardView) itemView.findViewById(R.id.cardViewRetweeted);
         }
+    }
+
+    /**
+     * 时间转换为友好的显示格式
+     *
+     * @param dateTime 需要显示的格式
+     * @return 友好的显示格式
+     */
+    private static String time2Show(DateTime dateTime) {
+        /**
+         * 1分钟以下，显示xx秒前 
+         * 1小时以下，显示xx分钟前
+         * 1天以下，显示xx小时前 
+         */
+
+        String temp = "";
+        // isAfterNow 在当前以后，即大于当前
+        if (dateTime.plusMinutes(1).isAfterNow()) {
+            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000) + "秒前";
+        } else if (dateTime.plusHours(1).isAfterNow()) {
+            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000 / 60) + "分钟前";
+        } else if (dateTime.plusDays(1).isAfterNow()) {
+            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000 / 60 / 60) + "小时前";
+        }else{
+            temp = dateTime.toString("MM-dd HH:mm");
+        }
+
+        return temp;//+ dateTime.toString("HH:mm:ss");
     }
 
 }
