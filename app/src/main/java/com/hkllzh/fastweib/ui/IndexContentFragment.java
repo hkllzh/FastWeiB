@@ -1,8 +1,12 @@
 package com.hkllzh.fastweib.ui;
 
+import android.app.Activity;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.internal.app.ToolbarActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
@@ -30,7 +34,19 @@ public class IndexContentFragment extends BaseFragment {
     private RecyclerView recyclerViewWbList;
     private WBListAdapter wbListAdapter;
 
+
     private String mMax_id;
+    
+    public IndexActivity parentActivity;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof IndexActivity){
+            parentActivity = (IndexActivity) activity;
+        }
+            
+    }
 
     @Override
     public int getContentViewId() {
@@ -43,6 +59,7 @@ public class IndexContentFragment extends BaseFragment {
         recyclerViewWbList = (RecyclerView) getView().findViewById(R.id.recyclerViewWbList);
         swipeRefreshLayout.setColorSchemeResources(R.color.refresh_color_1, R.color.refresh_color_2,
                 R.color.refresh_color_3, R.color.refresh_color_4);
+
     }
 
     @Override

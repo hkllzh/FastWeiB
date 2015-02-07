@@ -3,6 +3,7 @@ package com.hkllzh.fastweib;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
 
 import com.hkllzh.fastweib.auth.AccessTokenKeeper;
 import com.hkllzh.fastweib.net.NetRequest;
@@ -18,7 +19,7 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
  * <p/>
  * com.hkllzh.fastweib
  */
-public abstract class BaseActivity extends FragmentActivity {
+public abstract class BaseActivity extends ActionBarActivity {
 
     protected NetRequest netRequest;
 
