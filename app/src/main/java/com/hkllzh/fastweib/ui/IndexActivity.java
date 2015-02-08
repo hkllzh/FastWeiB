@@ -6,6 +6,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.hkllzh.fastweib.BaseActivity;
 import com.hkllzh.fastweib.R;
@@ -20,6 +21,7 @@ public class IndexActivity extends BaseActivity {
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
+    private FrameLayout left_drawer;
 
     @Override
     public int getContentViewId() {
@@ -30,6 +32,7 @@ public class IndexActivity extends BaseActivity {
     protected void initView() {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+        left_drawer = (FrameLayout) findViewById(R.id.left_drawer);
     }
 
     @Override
@@ -41,7 +44,9 @@ public class IndexActivity extends BaseActivity {
         ft.commit();
 
         setSupportActionBar(toolbar);
-        toolbar.showOverflowMenu();
+
+        
+
         drawerLayout.setDrawerListener(new ActionBarDrawerToggle(mActivity, drawerLayout, toolbar, R.string.weibosdk_demo_feature_open_api, R.string.weibosdk_demo_share_video_desc) {
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -57,33 +62,14 @@ public class IndexActivity extends BaseActivity {
                 syncState();
             }
         });
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
     }
 
     @Override
     protected void setListener() {
-
-//        drawerLayout.setDrawerListener(new ActionBarDrawerToggle(this,drawerLayout,android.R.drawable.btn_dropdown,R.drawable.abc_ab_share_pack_holo_dark));
-
-//        drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
-//            @Override
-//            public void onDrawerSlide(View drawerView, float slideOffset) {
-//
-//            }
-//
-//            @Override
-//            public void onDrawerOpened(View drawerView) {
-//
-//            }
-//
-//            @Override
-//            public void onDrawerClosed(View drawerView) {
-//
-//            }
-//
-//            @Override
-//            public void onDrawerStateChanged(int newState) {
-//
-//            }
-//        });
     }
+    
+    
 }

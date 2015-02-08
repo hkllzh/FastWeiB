@@ -84,7 +84,9 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
 
         String temp = "";
         // isAfterNow 在当前以后，即大于当前
-        if (dateTime.plusMinutes(1).isAfterNow()) {
+        if (dateTime.plusSeconds(30).isAfterNow()) {
+            temp = "刚刚";//String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000) + "秒前";
+        }else if (dateTime.plusMinutes(1).isAfterNow()) {
             temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000) + "秒前";
         } else if (dateTime.plusHours(1).isAfterNow()) {
             temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000 / 60) + "分钟前";
