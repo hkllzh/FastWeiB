@@ -30,20 +30,24 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
 
     @Override
     public WBListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.lv_item_wb_list, parent, false);
-        return new WBListViewHolder(v);
+        return new WBListViewHolder(getView(parent,viewType));
     }
 
     @Override
-    public void baseOnBindViewHolder(WBListViewHolder holder, int position) {
-        ImageLoader.getInstance().displayImage(mData.get(position).user.avatar_hd, holder.imavHeadPortrait);
-        holder.tvName.setText(mData.get(position).user.screen_name);
-        holder.tvTime.setText(time2Show(WBTimeParseUtil.parse(mData.get(position).created_at)));
-        holder.tvContent.setText(mData.get(position).text);
+    protected int getItemLayoutRes(int viewType) {
+        return R.layout.lv_item_wb_list;
+    }
 
-        if (null != mData.get(position).retweeted_status) {
+    @Override
+    public void baseOnBindViewHolder(WBListViewHolder holder, StatusBean bean) {
+        ImageLoader.getInstance().displayImage(bean.user.avatar_hd, holder.imavHeadPortrait);
+        holder.tvName.setText(bean.user.screen_name);
+        holder.tvTime.setText(time2Show(WBTimeParseUtil.parse(bean.created_at)));
+        holder.tvContent.setText(bean.text);
+
+        if (null != bean.retweeted_status) {
             holder.cardViewRetweeted.setVisibility(View.VISIBLE);
-            holder.tvRetweetedStatus.setText("@" + mData.get(position).retweeted_status.user.screen_name + " " + mData.get(position).retweeted_status.text);
+            holder.tvRetweetedStatus.setText("@" + bean.retweeted_status.user.screen_name + " " + bean.retweeted_status.text);
         } else {
             holder.cardViewRetweeted.setVisibility(View.GONE);
         }
