@@ -46,10 +46,12 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
         holder.tvContent.setText(bean.text);
 
         if (null != bean.retweeted_status) {
-            holder.cardViewRetweeted.setVisibility(View.VISIBLE);
+            holder.vLine.setVisibility(View.VISIBLE);
+            holder.tvRetweetedStatus.setVisibility(View.VISIBLE);
             holder.tvRetweetedStatus.setText("@" + bean.retweeted_status.user.screen_name + " " + bean.retweeted_status.text);
         } else {
-            holder.cardViewRetweeted.setVisibility(View.GONE);
+            holder.vLine.setVisibility(View.GONE);
+            holder.tvRetweetedStatus.setVisibility(View.GONE);
         }
     }
 
@@ -60,7 +62,8 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
         public TextView tvTime;
         public TextView tvContent;
         public TextView tvRetweetedStatus;
-        public CardView cardViewRetweeted;
+        public View vLine;
+        // public CardView cardViewRetweeted;
 
         public WBListViewHolder(View itemView) {
             super(itemView);
@@ -69,7 +72,8 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
             tvTime = (TextView) itemView.findViewById(R.id.tvTime);
             tvContent = (TextView) itemView.findViewById(R.id.tvContent);
             tvRetweetedStatus = (TextView) itemView.findViewById(R.id.tvRetweetedStatus);
-            cardViewRetweeted = (CardView) itemView.findViewById(R.id.cardViewRetweeted);
+            vLine = itemView.findViewById(R.id.vLine);
+            // cardViewRetweeted = (CardView) itemView.findViewById(R.id.cardViewRetweeted);
         }
     }
 
