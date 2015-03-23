@@ -1,8 +1,6 @@
 package com.hkllzh.fastweib.adapter;
 
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -31,7 +29,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
 
     @Override
     public WBListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new WBListViewHolder(getView(parent,viewType));
+        return new WBListViewHolder(getView(parent, viewType));
     }
 
     @Override
@@ -50,8 +48,12 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
             holder.vLine.setVisibility(View.VISIBLE);
             holder.tvRetweetedStatus.setVisibility(View.VISIBLE);
             holder.tvRetweetedStatus.setText("@" + bean.retweeted_status.user.screen_name + " " + bean.retweeted_status.text);
-
-            holder.wbImages.setPic_urls(bean.retweeted_status.pic_urls);
+            if (null != bean.retweeted_status.pic_urls && 0 != bean.retweeted_status.pic_urls.size()) {
+                holder.wbImages.setVisibility(View.VISIBLE);
+                holder.wbImages.setPic_urls(bean.retweeted_status.pic_urls);
+            }else{
+                holder.wbImages.setVisibility(View.GONE);
+            }
         } else {
             holder.vLine.setVisibility(View.GONE);
             holder.tvRetweetedStatus.setVisibility(View.GONE);
@@ -98,13 +100,13 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
         // isAfterNow 在当前以后，即大于当前
         if (dateTime.plusSeconds(30).isAfterNow()) {
             temp = "刚刚";//String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000) + "秒前";
-        }else if (dateTime.plusMinutes(1).isAfterNow()) {
+        } else if (dateTime.plusMinutes(1).isAfterNow()) {
             temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000) + "秒前";
         } else if (dateTime.plusHours(1).isAfterNow()) {
             temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000 / 60) + "分钟前";
         } else if (dateTime.plusDays(1).isAfterNow()) {
             temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000 / 60 / 60) + "小时前";
-        }else{
+        } else {
             temp = dateTime.toString("MM-dd HH:mm");
         }
 
