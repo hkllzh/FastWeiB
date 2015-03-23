@@ -12,6 +12,7 @@ import com.hkllzh.fastweib.BaseRVAdapter;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.bean.StatusBean;
 import com.hkllzh.fastweib.util.WBTimeParseUtil;
+import com.hkllzh.fastweib.view.WBListImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import org.joda.time.DateTime;
@@ -49,6 +50,8 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
             holder.vLine.setVisibility(View.VISIBLE);
             holder.tvRetweetedStatus.setVisibility(View.VISIBLE);
             holder.tvRetweetedStatus.setText("@" + bean.retweeted_status.user.screen_name + " " + bean.retweeted_status.text);
+
+            holder.wbImages.setPic_urls(bean.retweeted_status.pic_urls);
         } else {
             holder.vLine.setVisibility(View.GONE);
             holder.tvRetweetedStatus.setVisibility(View.GONE);
@@ -63,7 +66,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
         public TextView tvContent;
         public TextView tvRetweetedStatus;
         public View vLine;
-        // public CardView cardViewRetweeted;
+        public WBListImageView wbImages;
 
         public WBListViewHolder(View itemView) {
             super(itemView);
@@ -73,6 +76,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
             tvContent = (TextView) itemView.findViewById(R.id.tvContent);
             tvRetweetedStatus = (TextView) itemView.findViewById(R.id.tvRetweetedStatus);
             vLine = itemView.findViewById(R.id.vLine);
+            wbImages = (WBListImageView) itemView.findViewById(R.id.wbImages);
             // cardViewRetweeted = (CardView) itemView.findViewById(R.id.cardViewRetweeted);
         }
     }

@@ -9,7 +9,7 @@
         android:id="@+id/imavHeadPortrait"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="10dp"
         tools:src="@drawable/dia_loading_bg" />
 
@@ -18,8 +18,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/imavHeadPortrait"
-        android:layout_marginLeft="10dp"
-        android:layout_toRightOf="@id/imavHeadPortrait"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/imavHeadPortrait"
         android:textSize="@dimen/text_size_wb_list_name"
         tools:text="hkllzh" />
 
@@ -28,8 +28,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@id/tvName"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
         android:textColor="@color/black_9"
         android:textSize="14sp"
         tools:text="20小时" />
@@ -38,10 +38,10 @@
         android:id="@+id/tvContent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/tvName"
+        android:layout_alignStart="@id/tvName"
         android:layout_below="@id/tvName"
         android:layout_marginBottom="5dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginEnd="16dp"
         android:layout_marginTop="5dp"
         android:autoLink="all"
         tools:text="contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent" />
@@ -62,10 +62,10 @@
         android:id="@+id/tvRetweetedStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/tvName"
+        android:layout_alignStart="@id/tvName"
         android:layout_below="@id/vLine"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="16dp"
         android:autoLink="all"
         tools:text="转发微博" />
 
@@ -75,9 +75,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="10dp"
-        android:layout_alignLeft="@id/tvName"
-        android:layout_alignRight="@id/tvTime"
-        android:background="@color/refresh_color_1"
+        android:layout_alignStart="@id/tvName"
+        android:layout_alignEnd="@id/tvTime"
         android:layout_below="@id/tvRetweetedStatus"
         android:layout_marginTop="5dp" />
 

@@ -26,11 +26,15 @@
             android:name=".ui.IndexActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".ui.TestWebViewActivity" android:screenOrientation="portrait" />
+
         <activity
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
             android:configChanges="keyboardHidden|orientation"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+
     </application>
 
 </manifest>
