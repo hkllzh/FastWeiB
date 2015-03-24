@@ -13,6 +13,7 @@ import com.hkllzh.fastweib.BaseActivity;
 import com.hkllzh.fastweib.C;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.auth.AccessTokenKeeper;
+import com.hkllzh.fastweib.util.LogUtil;
 import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
@@ -53,7 +54,10 @@ public class SplashActivity extends BaseActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    LogUtil.e(true,"// 进入主程序// 进入主程序// 进入主程序");
                     startActivity(new Intent(mActivity, IndexActivity.class));
+                    // startActivity(new Intent(mActivity, TestWebViewActivity.class));
+
                     finish();
                 }
             }, 1500);

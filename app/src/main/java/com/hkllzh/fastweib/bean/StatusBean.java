@@ -1,5 +1,6 @@
 package com.hkllzh.fastweib.bean;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -65,4 +66,5 @@ public class StatusBean {
     public Objects visible;
     public Objects pic_ids;
     public Objects ad;
+    public ArrayList<PicUrl> pic_urls;
 }

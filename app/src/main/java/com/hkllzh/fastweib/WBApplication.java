@@ -1,6 +1,7 @@
 package com.hkllzh.fastweib;
 
 import android.app.Application;
+import android.util.Log;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Configuration;
@@ -38,6 +39,7 @@ public class WBApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Log.e("FastWB","WBApplication -> onCreate()");
 
         // 初始化和是否为正式版本有关的配置
         isRelease(false);

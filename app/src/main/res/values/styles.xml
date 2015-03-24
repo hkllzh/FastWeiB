@@ -2,6 +2,7 @@
 
     <style name="WBBaseTheme" parent="Theme.AppCompat">
         <item name="android:windowActionBar">false</item>
+        <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@color/white</item>
         <item name="android:textColor">@color/black_3</item>

@@ -1,6 +1,9 @@
 package com.hkllzh.fastweib;
 
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
@@ -37,9 +40,17 @@ public abstract class BaseRVAdapter<VH extends RecyclerView.ViewHolder, T> exten
         }
     }
 
+    protected View getView(ViewGroup parent, int viewType) {
+        return LayoutInflater.from(parent.getContext()).inflate(getItemLayoutRes(viewType), parent, false);
+    }
+
+    protected abstract int getItemLayoutRes(int viewType);
+
+
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        baseOnBindViewHolder((VH) holder, position);
+        // baseOnBindViewHolder((VH) holder, position);
+        baseOnBindViewHolder((VH)holder,mData.get(position));
         if (getItemCount() > 1 && getItemCount() - 2 == position) {
             if (null != loadMore) {
                 loadMore.loadMore();
@@ -55,7 +66,9 @@ public abstract class BaseRVAdapter<VH extends RecyclerView.ViewHolder, T> exten
         return mData.size();
     }
 
-    public abstract void baseOnBindViewHolder(VH holder, int position);
+    // public abstract void baseOnBindViewHolder(VH holder, int position);
+    
+    public abstract void baseOnBindViewHolder(VH holder, T bean);
 
 
     public interface LoadMore {
