@@ -47,7 +47,13 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
         if (null != bean.retweeted_status) {
             holder.vLine.setVisibility(View.VISIBLE);
             holder.tvRetweetedStatus.setVisibility(View.VISIBLE);
-            holder.tvRetweetedStatus.setText("@" + bean.retweeted_status.user.screen_name + " " + bean.retweeted_status.text);
+
+            if (null!=bean.retweeted_status.user){
+                holder.tvRetweetedStatus.setText("@" + bean.retweeted_status.user.screen_name + " " + bean.retweeted_status.text);
+            }else{
+                holder.tvRetweetedStatus.setText(bean.retweeted_status.text);
+            }
+
             if (null != bean.retweeted_status.pic_urls && 0 != bean.retweeted_status.pic_urls.size()) {
                 holder.wbImages.setVisibility(View.VISIBLE);
                 holder.wbImages.setPic_urls(bean.retweeted_status.pic_urls);

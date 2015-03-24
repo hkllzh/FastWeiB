@@ -2,6 +2,7 @@ package com.hkllzh.fastweib.util;
 
 import android.graphics.Bitmap;
 
+import com.hkllzh.fastweib.R;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
@@ -32,6 +33,17 @@ public class ImageLoaderOptions {
         return new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisc(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .displayer(new FadeInBitmapDisplayer(200))
+                .build();
+    }
+
+    public static DisplayImageOptions wbListImageOptions(){
+        return new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisc(true)
+                .showImageOnLoading(R.mipmap.pic_listimage_default)
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .displayer(new FadeInBitmapDisplayer(200))

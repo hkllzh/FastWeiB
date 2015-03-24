@@ -1,13 +1,19 @@
 package com.hkllzh.fastweib.view;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.bean.PicUrl;
+import com.hkllzh.fastweib.util.ImageLoaderOptions;
 import com.hkllzh.fastweib.util.MeasureUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
 import java.util.ArrayList;
 
@@ -32,14 +38,45 @@ public class WBListImageView extends RelativeLayout {
         if (null == this.pic_urls || 0 == this.pic_urls.size()) {
             return;
         }
-        int _12dp = MeasureUtil.dip2px(getContext(), 12);
-        RelativeLayout.LayoutParams layoutParams = new LayoutParams(_12dp, _12dp);
+        int _100dp = MeasureUtil.dip2px(getContext(), 100);
+        RelativeLayout.LayoutParams layoutParams = new LayoutParams(_100dp, _100dp);
 
         for (PicUrl s : pic_urls) {
             ImageView imageView = new ImageView(getContext());
             imageView.setContentDescription(s.thumbnail_pic);
+            // imageView.setBackgroundResource(R.mipmap.pic_listimage_default);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            addView(imageView, layoutParams);
+
+            ImageLoader.getInstance().displayImage(s.thumbnail_pic.replace("thumbnail", "small"), imageView, ImageLoaderOptions.normalOptionsWithDisplayer(), new ImageLoadingListener() {
+                @Override
+                public void onLoadingStarted(String imageUri, View view) {
+                    ImageView v = (ImageView) view;
+                    if (null != v) {
+                        v.setBackgroundResource(R.mipmap.pic_listimage_default);
+                    }
+                }
+
+                @Override
+                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+
+                }
+
+                @Override
+                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                    ImageView v = (ImageView) view;
+                    if (null != v) {
+                        v.setBackgroundDrawable(null);
+                    }
+
+                }
+
+                @Override
+                public void onLoadingCancelled(String imageUri, View view) {
+
+                }
+            });
+
+            addView(imageView,layoutParams);
         }
 
         requestLayout();
@@ -67,7 +104,7 @@ public class WBListImageView extends RelativeLayout {
         int allViewCounts = getChildCount();
 
         for (int i = 0; i < allViewCounts; i++) {
-            ImageView iv = (ImageView) getChildAt(i);
+            final ImageView iv = (ImageView) getChildAt(i);
 
 
             // 0 -- iv.layout(0, 0, w, w);
@@ -90,10 +127,6 @@ public class WBListImageView extends RelativeLayout {
             if (i > 5 && i < 9) { // 6 7 8
                 iv.layout(w * (i - 6) + _2dp, w + w + _2dp, w * (i - 5) - _2dp, w + w + w - _2dp);
             }
-
-            
-            ImageLoader.getInstance().displayImage(pic_urls.get(i).thumbnail_pic.replace("thumbnail", "bmiddle"), iv);
-
         }
     }
 
