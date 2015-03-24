@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.hkllzh.fastweib.bean.PicUrl;
+import com.hkllzh.fastweib.util.MeasureUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.util.ArrayList;
@@ -31,12 +32,14 @@ public class WBListImageView extends RelativeLayout {
         if (null == this.pic_urls || 0 == this.pic_urls.size()) {
             return;
         }
+        int _12dp = MeasureUtil.dip2px(getContext(), 12);
+        RelativeLayout.LayoutParams layoutParams = new LayoutParams(_12dp, _12dp);
 
         for (PicUrl s : pic_urls) {
             ImageView imageView = new ImageView(getContext());
             imageView.setContentDescription(s.thumbnail_pic);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            addView(imageView);
+            addView(imageView, layoutParams);
         }
 
         requestLayout();
@@ -60,32 +63,36 @@ public class WBListImageView extends RelativeLayout {
         // LogUtil.e(TAG + "onLayout - W:" + getWidth() + " H:" + getHeight());
 
         int w = getWidth() / 3;
+        int _2dp = MeasureUtil.dip2px(getContext(), 2);
         int allViewCounts = getChildCount();
 
         for (int i = 0; i < allViewCounts; i++) {
             ImageView iv = (ImageView) getChildAt(i);
-            ImageLoader.getInstance().displayImage(pic_urls.get(i).thumbnail_pic, iv);
+
 
             // 0 -- iv.layout(0, 0, w, w);
             // 1 -- iv.layout(w, 0, w + w, w);
             // 2 -- iv.layout(w + w, 0, w + w + w, w);
             if (i < 3) { // 0 1 2
-                iv.layout(w * i, 0, w * (i + 1), w);
+                iv.layout(w * i + _2dp, _2dp, w * (i + 1) - _2dp, w - _2dp);
             }
 
             // 3 -- iv.layout(w + w, 0, w + w + w, w);
             // 4 -- iv.layout(w + w, 0, w + w + w, w);
             // 5 -- iv.layout(w + w, 0, w + w + w, w);
             if (i > 2 && i < 6) { // 3 4 5
-                iv.layout(w * (i - 3), w, w * (i - 2), w + w);
+                iv.layout(w * (i - 3) + _2dp, w + _2dp, w * (i - 2) - _2dp, w + w - _2dp);
             }
 
             // 6 -- iv.layout(w + w, 0, w + w + w, w);
             // 7 -- iv.layout(w + w, 0, w + w + w, w);
             // 8 -- iv.layout(w + w, 0, w + w + w, w);
             if (i > 5 && i < 9) { // 6 7 8
-                iv.layout(w * (i - 6), w + w, w * (i - 5), w + w + w);
+                iv.layout(w * (i - 6) + _2dp, w + w + _2dp, w * (i - 5) - _2dp, w + w + w - _2dp);
             }
+
+            
+            ImageLoader.getInstance().displayImage(pic_urls.get(i).thumbnail_pic.replace("thumbnail", "bmiddle"), iv);
 
         }
     }
