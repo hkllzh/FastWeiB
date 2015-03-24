@@ -63,6 +63,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
         } else {
             holder.vLine.setVisibility(View.GONE);
             holder.tvRetweetedStatus.setVisibility(View.GONE);
+            holder.wbImages.setVisibility(View.GONE);
         }
     }
 
