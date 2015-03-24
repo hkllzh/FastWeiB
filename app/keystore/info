@@ -1,0 +1,24 @@
+keystore git:(develop) keytool -genkey -alias fastweib.keystore -keyalg RSA -validity 10000 -keystore fastweib.keystore
+输入密钥库口令:  
+再次输入新口令: 
+您的名字与姓氏是什么?
+  [Unknown]:  lizheng
+您的组织单位名称是什么?
+  [Unknown]:  hkllzh
+您的组织名称是什么?
+  [Unknown]:  hkllzh
+您所在的城市或区域名称是什么?
+  [Unknown]:  BJ
+您所在的省/市/自治区名称是什么?
+  [Unknown]:  CP
+该单位的双字母国家/地区代码是什么?
+  [Unknown]:  CH
+CN=lizheng, OU=hkllzh, O=hkllzh, L=BJ, ST=CP, C=CH是否正确?
+  [否]:  Y
+
+输入 <fastweib.keystore> 的密钥口令
+	(如果和密钥库口令相同, 按回车):  
+再次输入新口令: 
+
+
+VNtOcd44
