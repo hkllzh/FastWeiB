@@ -13,8 +13,6 @@ import com.hkllzh.fastweib.util.WBTimeUtil;
 import com.hkllzh.fastweib.view.WBListImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-import org.joda.time.DateTime;
-
 /**
  * 微博列表适配器
  * <p/>
@@ -48,22 +46,28 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
             holder.vLine.setVisibility(View.VISIBLE);
             holder.tvRetweetedStatus.setVisibility(View.VISIBLE);
 
-            if (null!=bean.retweeted_status.user){
+            if (null != bean.retweeted_status.user) {
                 holder.tvRetweetedStatus.setText("@" + bean.retweeted_status.user.screen_name + " " + bean.retweeted_status.text);
-            }else{
+            } else {
                 holder.tvRetweetedStatus.setText(bean.retweeted_status.text);
             }
 
             if (null != bean.retweeted_status.pic_urls && 0 != bean.retweeted_status.pic_urls.size()) {
                 holder.wbImages.setVisibility(View.VISIBLE);
                 holder.wbImages.setPic_urls(bean.retweeted_status.pic_urls);
-            }else{
+            } else {
                 holder.wbImages.setVisibility(View.GONE);
             }
         } else {
             holder.vLine.setVisibility(View.GONE);
             holder.tvRetweetedStatus.setVisibility(View.GONE);
-            holder.wbImages.setVisibility(View.GONE);
+
+            if (null != bean.pic_urls && 0 != bean.pic_urls.size()) {
+                holder.wbImages.setVisibility(View.VISIBLE);
+                holder.wbImages.setPic_urls(bean.pic_urls);
+            } else {
+                holder.wbImages.setVisibility(View.GONE);
+            }
         }
     }
 
