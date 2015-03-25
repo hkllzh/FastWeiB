@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.hkllzh.fastweib.BaseRVAdapter;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.bean.StatusBean;
-import com.hkllzh.fastweib.util.WBTimeParseUtil;
+import com.hkllzh.fastweib.util.WBTimeUtil;
 import com.hkllzh.fastweib.view.WBListImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -41,7 +41,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
     public void baseOnBindViewHolder(WBListViewHolder holder, StatusBean bean) {
         ImageLoader.getInstance().displayImage(bean.user.avatar_hd, holder.imavHeadPortrait);
         holder.tvName.setText(bean.user.screen_name);
-        holder.tvTime.setText(time2Show(WBTimeParseUtil.parse(bean.created_at)));
+        holder.tvTime.setText(WBTimeUtil.time2Show(WBTimeUtil.parse(bean.created_at)));
         holder.tvContent.setText(bean.text);
 
         if (null != bean.retweeted_status) {
@@ -86,38 +86,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
             tvRetweetedStatus = (TextView) itemView.findViewById(R.id.tvRetweetedStatus);
             vLine = itemView.findViewById(R.id.vLine);
             wbImages = (WBListImageView) itemView.findViewById(R.id.wbImages);
-            // cardViewRetweeted = (CardView) itemView.findViewById(R.id.cardViewRetweeted);
         }
-    }
-
-    /**
-     * 时间转换为友好的显示格式
-     *
-     * @param dateTime 需要显示的格式
-     * @return 友好的显示格式
-     */
-    private static String time2Show(DateTime dateTime) {
-        /**
-         * 1分钟以下，显示xx秒前 
-         * 1小时以下，显示xx分钟前
-         * 1天以下，显示xx小时前 
-         */
-
-        String temp = "";
-        // isAfterNow 在当前以后，即大于当前
-        if (dateTime.plusSeconds(30).isAfterNow()) {
-            temp = "刚刚";//String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000) + "秒前";
-        } else if (dateTime.plusMinutes(1).isAfterNow()) {
-            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000) + "秒前";
-        } else if (dateTime.plusHours(1).isAfterNow()) {
-            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000 / 60) + "分钟前";
-        } else if (dateTime.plusDays(1).isAfterNow()) {
-            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000 / 60 / 60) + "小时前";
-        } else {
-            temp = dateTime.toString("MM-dd HH:mm");
-        }
-
-        return temp;//+ dateTime.toString("HH:mm:ss");
     }
 
 }

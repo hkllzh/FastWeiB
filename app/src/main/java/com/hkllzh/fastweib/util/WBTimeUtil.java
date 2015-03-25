@@ -13,7 +13,7 @@ import java.util.HashMap;
  * <p/>
  * FastWeiB
  */
-public class WBTimeParseUtil {
+public class WBTimeUtil {
 
     private static DateTimeFormatter formatter;
     private static HashMap<String, String> months;
@@ -61,5 +61,35 @@ public class WBTimeParseUtil {
                 .append(" ").append(ss[3]);//.append(" ").append(ss[4]);
 
         return DateTime.parse(stringBuilder.toString(), formatter);
+    }
+
+    /**
+     * 时间转换为友好的显示格式
+     *
+     * @param dateTime 需要显示的格式
+     * @return 友好的显示格式
+     */
+    public static String time2Show(DateTime dateTime) {
+        /**
+         * 1分钟以下，显示xx秒前
+         * 1小时以下，显示xx分钟前
+         * 1天以下，显示xx小时前
+         */
+
+        String temp = "";
+        // isAfterNow 在当前以后，即大于当前
+        if (dateTime.plusSeconds(30).isAfterNow()) {
+            temp = "刚刚";//String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000) + "秒前";
+        } else if (dateTime.plusMinutes(1).isAfterNow()) {
+            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000) + "秒前";
+        } else if (dateTime.plusHours(1).isAfterNow()) {
+            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000 / 60) + "分钟前";
+        } else if (dateTime.plusDays(1).isAfterNow()) {
+            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000 / 60 / 60) + "小时前";
+        } else {
+            temp = dateTime.toString("MM-dd HH:mm");
+        }
+
+        return temp;//+ dateTime.toString("HH:mm:ss");
     }
 }
