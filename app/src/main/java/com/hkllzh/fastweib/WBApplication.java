@@ -5,6 +5,9 @@ import android.util.Log;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Configuration;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
 import com.hkllzh.fastweib.net.NetRequest;
 import com.hkllzh.fastweib.util.ACache;
 import com.hkllzh.fastweib.util.ImageLoaderOptions;
@@ -14,6 +17,8 @@ import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+
+import java.util.ArrayList;
 
 /**
  * 此程序自定义的Application
@@ -41,6 +46,21 @@ public class WBApplication extends Application {
         super.onCreate();
         Log.e("FastWB","WBApplication -> onCreate()");
 
+        ArrayList<Integer> is = new ArrayList<>();
+        is.add(1);
+        is.add(2);
+        is.add(3);
+        is.add(4);
+        is.add(5);
+        is.add(6);
+        is.add(7);
+        is.add(8);
+        is.add(9);
+        is.add(10);
+        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
+                .setProgressiveJpegConfig(new SimpleProgressiveJpegConfig(is,5))
+                .build();
+        Fresco.initialize(this,config);
         // 初始化和是否为正式版本有关的配置
         isRelease(false);
 

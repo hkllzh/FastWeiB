@@ -1,11 +1,13 @@
 package com.hkllzh.fastweib.adapter;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.hkllzh.fastweib.BaseRVAdapter;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.bean.StatusBean;
@@ -37,7 +39,8 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
 
     @Override
     public void baseOnBindViewHolder(WBListViewHolder holder, StatusBean bean) {
-        ImageLoader.getInstance().displayImage(bean.user.avatar_hd, holder.imavHeadPortrait);
+        // ImageLoader.getInstance().displayImage(bean.user.avatar_hd, holder.imavHeadPortrait);
+        holder.imavHeadPortrait.setImageURI(Uri.parse(bean.user.avatar_hd));
         holder.tvName.setText(bean.user.screen_name);
         holder.tvTime.setText(WBTimeUtil.time2Show(WBTimeUtil.parse(bean.created_at)));
         holder.tvContent.setText(bean.text);
@@ -45,7 +48,6 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
         if (null != bean.retweeted_status) {
             holder.vLine.setVisibility(View.VISIBLE);
             holder.tvRetweetedStatus.setVisibility(View.VISIBLE);
-
             if (null != bean.retweeted_status.user) {
                 holder.tvRetweetedStatus.setText("@" + bean.retweeted_status.user.screen_name + " " + bean.retweeted_status.text);
             } else {
@@ -73,7 +75,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
 
     class WBListViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView imavHeadPortrait;
+        public SimpleDraweeView imavHeadPortrait;
         public TextView tvName;
         public TextView tvTime;
         public TextView tvContent;
@@ -83,7 +85,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
 
         public WBListViewHolder(View itemView) {
             super(itemView);
-            imavHeadPortrait = (ImageView) itemView.findViewById(R.id.imavHeadPortrait);
+            imavHeadPortrait = (SimpleDraweeView) itemView.findViewById(R.id.imavHeadPortrait);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvTime = (TextView) itemView.findViewById(R.id.tvTime);
             tvContent = (TextView) itemView.findViewById(R.id.tvContent);

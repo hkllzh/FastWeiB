@@ -2,11 +2,20 @@ package com.hkllzh.fastweib.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.backends.pipeline.PipelineDraweeController;
+import com.facebook.drawee.generic.GenericDraweeHierarchy;
+import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.bean.PicUrl;
 import com.hkllzh.fastweib.util.ImageLoaderOptions;
@@ -15,6 +24,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
+import java.net.URI;
 import java.util.ArrayList;
 
 /**
@@ -41,42 +51,75 @@ public class WBListImageView extends RelativeLayout {
         int _100dp = MeasureUtil.dip2px(getContext(), 100);
         RelativeLayout.LayoutParams layoutParams = new LayoutParams(_100dp, _100dp);
 
+//        for (PicUrl s : pic_urls) {
+//            ImageView imageView = new ImageView(getContext());
+//            imageView.setContentDescription(s.thumbnail_pic);
+//            // imageView.setBackgroundResource(R.mipmap.pic_listimage_default);
+//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//
+//            ImageLoader.getInstance().displayImage(s.thumbnail_pic.replace("thumbnail", "small"), imageView, ImageLoaderOptions.normalOptionsWithDisplayer(), new ImageLoadingListener() {
+//                @Override
+//                public void onLoadingStarted(String imageUri, View view) {
+//                    ImageView v = (ImageView) view;
+//                    if (null != v) {
+//                        v.setBackgroundResource(R.mipmap.pic_listimage_default);
+//                    }
+//                }
+//
+//                @Override
+//                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+//
+//                }
+//
+//                @Override
+//                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+//                    ImageView v = (ImageView) view;
+//                    if (null != v) {
+//                        v.setBackgroundDrawable(null);
+//                    }
+//
+//                }
+//
+//                @Override
+//                public void onLoadingCancelled(String imageUri, View view) {
+//
+//                }
+//            });
+//
+//            addView(imageView,layoutParams);
+//        }
+
         for (PicUrl s : pic_urls) {
-            ImageView imageView = new ImageView(getContext());
-            imageView.setContentDescription(s.thumbnail_pic);
-            // imageView.setBackgroundResource(R.mipmap.pic_listimage_default);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            Uri smallUri = Uri.parse(s.thumbnail_pic.replace("thumbnail", "small"));
+            Uri largeUri = Uri.parse(s.thumbnail_pic.replace("thumbnail", "large"));
+            SimpleDraweeView sv = new SimpleDraweeView(getContext());
 
-            ImageLoader.getInstance().displayImage(s.thumbnail_pic.replace("thumbnail", "small"), imageView, ImageLoaderOptions.normalOptionsWithDisplayer(), new ImageLoadingListener() {
-                @Override
-                public void onLoadingStarted(String imageUri, View view) {
-                    ImageView v = (ImageView) view;
-                    if (null != v) {
-                        v.setBackgroundResource(R.mipmap.pic_listimage_default);
-                    }
-                }
+            ImageRequest r = ImageRequestBuilder
+                    .newBuilderWithSource(largeUri)
+                    .setProgressiveRenderingEnabled(true)
+                    .build();
 
-                @Override
-                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
 
-                }
+            DraweeController controller = Fresco.newDraweeControllerBuilder()
+                    // .setUri(u)
+                    // .setLowResImageRequest(ImageRequest.fromUri(smallUri))
+                    .setImageRequest(r)
+                    .setAutoPlayAnimations(true)
+            .build();
 
-                @Override
-                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                    ImageView v = (ImageView) view;
-                    if (null != v) {
-                        v.setBackgroundDrawable(null);
-                    }
 
-                }
+            GenericDraweeHierarchyBuilder builder =
+                    new GenericDraweeHierarchyBuilder(getResources());
+            GenericDraweeHierarchy hierarchy = builder
+                    .setFadeDuration(1000)
+                    .build();
 
-                @Override
-                public void onLoadingCancelled(String imageUri, View view) {
+            sv.setHierarchy(hierarchy);
 
-                }
-            });
 
-            addView(imageView,layoutParams);
+            sv.setController(controller);
+            // sv.setImageURI();
+            addView(sv,layoutParams);
         }
 
         requestLayout();
@@ -104,7 +147,8 @@ public class WBListImageView extends RelativeLayout {
         int allViewCounts = getChildCount();
 
         for (int i = 0; i < allViewCounts; i++) {
-            final ImageView iv = (ImageView) getChildAt(i);
+//            final ImageView iv = (ImageView) getChildAt(i);
+            final SimpleDraweeView iv = (SimpleDraweeView) getChildAt(i);
 
 
             // 0 -- iv.layout(0, 0, w, w);
