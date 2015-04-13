@@ -1,15 +1,12 @@
 package com.hkllzh.fastweib.view;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.backends.pipeline.PipelineDraweeController;
+import com.facebook.drawee.drawable.ScalingUtils;
 import com.facebook.drawee.generic.GenericDraweeHierarchy;
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder;
 import com.facebook.drawee.interfaces.DraweeController;
@@ -18,13 +15,8 @@ import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.bean.PicUrl;
-import com.hkllzh.fastweib.util.ImageLoaderOptions;
 import com.hkllzh.fastweib.util.MeasureUtil;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.assist.FailReason;
-import com.nostra13.universalimageloader.core.assist.ImageLoadingListener;
 
-import java.net.URI;
 import java.util.ArrayList;
 
 /**
@@ -95,23 +87,24 @@ public class WBListImageView extends RelativeLayout {
             SimpleDraweeView sv = new SimpleDraweeView(getContext());
 
             ImageRequest r = ImageRequestBuilder
-                    .newBuilderWithSource(largeUri)
-                    .setProgressiveRenderingEnabled(true)
+                    .newBuilderWithSource(smallUri)
                     .build();
 
 
             DraweeController controller = Fresco.newDraweeControllerBuilder()
-                    // .setUri(u)
-                    // .setLowResImageRequest(ImageRequest.fromUri(smallUri))
-                    .setImageRequest(r)
-                    .setAutoPlayAnimations(true)
-            .build();
+                    .setUri(smallUri)
+                            // .setLowResImageRequest(r)
+                            // .setLowResImageRequest(ImageRequest.fromUri(smallUri))
+                            // .setImageRequest(r)
+                            // .setAutoPlayAnimations(true)
+                    .build();
 
 
             GenericDraweeHierarchyBuilder builder =
                     new GenericDraweeHierarchyBuilder(getResources());
             GenericDraweeHierarchy hierarchy = builder
-                    .setFadeDuration(1000)
+                    // .setFadeDuration(1000)
+                    .setPlaceholderImage(getResources().getDrawable(R.color.material_blue_50), ScalingUtils.ScaleType.FOCUS_CROP)
                     .build();
 
             sv.setHierarchy(hierarchy);
@@ -119,7 +112,7 @@ public class WBListImageView extends RelativeLayout {
 
             sv.setController(controller);
             // sv.setImageURI();
-            addView(sv,layoutParams);
+            addView(sv, layoutParams);
         }
 
         requestLayout();
