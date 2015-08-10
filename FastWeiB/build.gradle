@@ -10,16 +10,16 @@ android {
         }
     }
     compileSdkVersion 22
-    buildToolsVersion "22.0.0"
+    buildToolsVersion "22.0.1"
     sourceSets {
         main {
-            jniLibs.srcDirs = ["libs"]
+            jniLibs.srcDirs = ['libs']
         }
     }
     defaultConfig {
         applicationId "com.hkllzh.fastweib"
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -31,14 +31,20 @@ android {
         }
     }
     packagingOptions {
+        exclude 'NOTICE'
+        exclude 'LICENSE'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/LICENSE'
         exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
     }
 }
 
 dependencies {
     // compile fileTree(dir: 'libs', include: ['*.jar'])
     // weibo
-    compile files('libs/weibosdkcore_v3.0.1.jar')
+    compile files('libs/weibosdkcore.jar')
     compile 'com.android.support:support-v4:22.2.1'
     compile 'com.android.support:appcompat-v7:22.2.1'
     compile 'com.android.support:recyclerview-v7:22.2.1'
