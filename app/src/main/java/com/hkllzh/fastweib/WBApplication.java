@@ -46,21 +46,7 @@ public class WBApplication extends Application {
         super.onCreate();
         Log.e("FastWB","WBApplication -> onCreate()");
 
-        ArrayList<Integer> is = new ArrayList<>();
-        is.add(1);
-        is.add(2);
-        is.add(3);
-        is.add(4);
-        is.add(5);
-        is.add(6);
-        is.add(7);
-        is.add(8);
-        is.add(9);
-        is.add(10);
-        ImagePipelineConfig config = ImagePipelineConfig.newBuilder(this)
-                .setProgressiveJpegConfig(new SimpleProgressiveJpegConfig(is,5))
-                .build();
-        Fresco.initialize(this,config);
+        Fresco.initialize(this);
         // 初始化和是否为正式版本有关的配置
         isRelease(false);
 
