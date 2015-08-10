@@ -1,1 +1,2 @@
 include ':FastWeiB'
+include ':BaseAndroid'
