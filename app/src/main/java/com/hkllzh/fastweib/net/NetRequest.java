@@ -182,10 +182,21 @@ public class NetRequest {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
-                String data = new String(responseBody);
-                handler.failure(data, error);
+                String response = new String(responseBody);
+                printUrlAndErrorInfo(url, statusCode, response);
+                handler.failure(response, error);
             }
         });
+    }
+
+    /**
+     * 打印错误信息
+     *
+     * @param url      请求url
+     * @param response 错误信息
+     */
+    private void printUrlAndErrorInfo(String url, int statusCode, String response) {
+        LogUtil.d(isShowLog, TAG + "\nurl:" + url + "\nstatusCode:" + statusCode + "\nerrorInfo:" + response);
     }
 
 

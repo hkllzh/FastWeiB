@@ -1,15 +1,21 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        release {
+            keyAlias 'fastweib.keystore'
+            keyPassword 'VNtOcd44'
+            storeFile file('keystore/fastweib.keystore')
+            storePassword 'VNtOcd44'
+        }
+    }
     compileSdkVersion 21
     buildToolsVersion "21.1.2"
-    
-    sourceSets{
-        main{
+    sourceSets {
+        main {
             jniLibs.srcDirs = ["libs"]
         }
     }
-
     defaultConfig {
         applicationId "com.hkllzh.fastweib"
         minSdkVersion 14
@@ -21,7 +27,11 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
     }
 }
 
@@ -40,6 +50,8 @@ dependencies {
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
     compile 'com.google.code.gson:gson:2.3'
     compile 'joda-time:joda-time:2.3'
+
+    compile 'com.facebook.fresco:fresco:0.1.0'
     // compile 'org.roboguice:roboguice:3.0.1'
     // provided 'org.roboguice:roboblender:3.0.1'
 }

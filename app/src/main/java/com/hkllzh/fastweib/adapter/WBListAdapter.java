@@ -1,19 +1,19 @@
 package com.hkllzh.fastweib.adapter;
 
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.hkllzh.fastweib.BaseRVAdapter;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.bean.StatusBean;
-import com.hkllzh.fastweib.util.WBTimeParseUtil;
+import com.hkllzh.fastweib.util.WBTimeUtil;
 import com.hkllzh.fastweib.view.WBListImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
-
-import org.joda.time.DateTime;
 
 /**
  * 微博列表适配器
@@ -39,30 +39,43 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
 
     @Override
     public void baseOnBindViewHolder(WBListViewHolder holder, StatusBean bean) {
-        ImageLoader.getInstance().displayImage(bean.user.avatar_hd, holder.imavHeadPortrait);
+        // ImageLoader.getInstance().displayImage(bean.user.avatar_hd, holder.imavHeadPortrait);
+        holder.imavHeadPortrait.setImageURI(Uri.parse(bean.user.avatar_hd));
         holder.tvName.setText(bean.user.screen_name);
-        holder.tvTime.setText(time2Show(WBTimeParseUtil.parse(bean.created_at)));
+        holder.tvTime.setText(WBTimeUtil.time2Show(WBTimeUtil.parse(bean.created_at)));
         holder.tvContent.setText(bean.text);
 
         if (null != bean.retweeted_status) {
             holder.vLine.setVisibility(View.VISIBLE);
             holder.tvRetweetedStatus.setVisibility(View.VISIBLE);
-            holder.tvRetweetedStatus.setText("@" + bean.retweeted_status.user.screen_name + " " + bean.retweeted_status.text);
+            if (null != bean.retweeted_status.user) {
+                holder.tvRetweetedStatus.setText("@" + bean.retweeted_status.user.screen_name + " " + bean.retweeted_status.text);
+            } else {
+                holder.tvRetweetedStatus.setText(bean.retweeted_status.text);
+            }
+
             if (null != bean.retweeted_status.pic_urls && 0 != bean.retweeted_status.pic_urls.size()) {
                 holder.wbImages.setVisibility(View.VISIBLE);
                 holder.wbImages.setPic_urls(bean.retweeted_status.pic_urls);
-            }else{
+            } else {
                 holder.wbImages.setVisibility(View.GONE);
             }
         } else {
             holder.vLine.setVisibility(View.GONE);
             holder.tvRetweetedStatus.setVisibility(View.GONE);
+
+            if (null != bean.pic_urls && 0 != bean.pic_urls.size()) {
+                holder.wbImages.setVisibility(View.VISIBLE);
+                holder.wbImages.setPic_urls(bean.pic_urls);
+            } else {
+                holder.wbImages.setVisibility(View.GONE);
+            }
         }
     }
 
     class WBListViewHolder extends RecyclerView.ViewHolder {
 
-        public ImageView imavHeadPortrait;
+        public SimpleDraweeView imavHeadPortrait;
         public TextView tvName;
         public TextView tvTime;
         public TextView tvContent;
@@ -72,45 +85,14 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
 
         public WBListViewHolder(View itemView) {
             super(itemView);
-            imavHeadPortrait = (ImageView) itemView.findViewById(R.id.imavHeadPortrait);
+            imavHeadPortrait = (SimpleDraweeView) itemView.findViewById(R.id.imavHeadPortrait);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvTime = (TextView) itemView.findViewById(R.id.tvTime);
             tvContent = (TextView) itemView.findViewById(R.id.tvContent);
             tvRetweetedStatus = (TextView) itemView.findViewById(R.id.tvRetweetedStatus);
             vLine = itemView.findViewById(R.id.vLine);
             wbImages = (WBListImageView) itemView.findViewById(R.id.wbImages);
-            // cardViewRetweeted = (CardView) itemView.findViewById(R.id.cardViewRetweeted);
         }
-    }
-
-    /**
-     * 时间转换为友好的显示格式
-     *
-     * @param dateTime 需要显示的格式
-     * @return 友好的显示格式
-     */
-    private static String time2Show(DateTime dateTime) {
-        /**
-         * 1分钟以下，显示xx秒前 
-         * 1小时以下，显示xx分钟前
-         * 1天以下，显示xx小时前 
-         */
-
-        String temp = "";
-        // isAfterNow 在当前以后，即大于当前
-        if (dateTime.plusSeconds(30).isAfterNow()) {
-            temp = "刚刚";//String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000) + "秒前";
-        } else if (dateTime.plusMinutes(1).isAfterNow()) {
-            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000) + "秒前";
-        } else if (dateTime.plusHours(1).isAfterNow()) {
-            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000 / 60) + "分钟前";
-        } else if (dateTime.plusDays(1).isAfterNow()) {
-            temp = String.valueOf((DateTime.now().getMillis() - dateTime.getMillis()) / 1000 / 60 / 60) + "小时前";
-        } else {
-            temp = dateTime.toString("MM-dd HH:mm");
-        }
-
-        return temp;//+ dateTime.toString("HH:mm:ss");
     }
 
 }

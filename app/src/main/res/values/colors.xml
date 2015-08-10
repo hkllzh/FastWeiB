@@ -5,6 +5,7 @@
     <color name="black_6">#666666</color>
     <color name="black_9">#999999</color>
     <!-- http://www.google.com/design/spec/style/color.html#color-ui-color-application -->
+    <color name="material_blue_50">#e7e9fd</color>
     <color name="material_blue_500">#2196f3</color>
     <color name="material_blue_700">#1976d2</color>
 
