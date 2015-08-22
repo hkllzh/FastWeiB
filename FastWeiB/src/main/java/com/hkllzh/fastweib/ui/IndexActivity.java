@@ -15,6 +15,7 @@ import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.net.NetRequest;
 import com.hkllzh.fastweib.net.RequestHandler;
 import com.hkllzh.fastweib.net.UrlParamsBean;
+import com.squareup.okhttp.OkHttpClient;
 
 /**
  * 项目首页
@@ -70,6 +71,12 @@ public class IndexActivity extends BaseActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+
+
+        OkHttpClient okHttpClient = new OkHttpClient();
+
+
+
     }
 
     @Override

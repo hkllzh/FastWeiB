@@ -18,7 +18,7 @@ public abstract class RequestHandler {
 
     public abstract void finish();
 
-    public void progress(int bytesWritten, int totalSize) {
+    public void progress(long bytesWritten, long totalSize) {
     }
 
     public void customCacheData(String responseData) {

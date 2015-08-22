@@ -97,7 +97,7 @@ public class NetRequest {
             }
 
             @Override
-            public void onProgress(int bytesWritten, int totalSize) {
+            public void onProgress(long bytesWritten, long totalSize) {
                 printUrlAndProgress(url, bytesWritten, totalSize);
                 handler.progress(bytesWritten, totalSize);
             }
@@ -167,7 +167,7 @@ public class NetRequest {
             }
 
             @Override
-            public void onProgress(int bytesWritten, int totalSize) {
+            public void onProgress(long bytesWritten, long totalSize) {
                 printUrlAndProgress(url, bytesWritten, totalSize);
                 handler.progress(bytesWritten, totalSize);
             }
@@ -207,7 +207,7 @@ public class NetRequest {
      * @param bytesWritten 完成的进度
      * @param totalSize    总大小
      */
-    private void printUrlAndProgress(String url, int bytesWritten, int totalSize) {
+    private void printUrlAndProgress(String url, long bytesWritten, long totalSize) {
         if (1 == totalSize || 0 == totalSize) {
             return;
         }

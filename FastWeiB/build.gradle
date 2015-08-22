@@ -10,7 +10,7 @@ android {
         }
     }
     compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    buildToolsVersion "23.0.0"
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
@@ -42,21 +42,18 @@ android {
 }
 
 dependencies {
+    compile project(':BaseAndroid')
     // compile fileTree(dir: 'libs', include: ['*.jar'])
     // weibo
     compile files('libs/weibosdkcore.jar')
-    compile 'com.android.support:support-v4:22.2.1'
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:recyclerview-v7:22.2.1'
-    compile 'com.android.support:cardview-v7:22.2.1'
-    compile 'com.loopj.android:android-async-http:1.4.5'
-    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.1'
-    compile 'com.nineoldandroids:library:2.4.0'
-    compile 'de.greenrobot:eventbus:2.2.1'
-    compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
-    compile 'com.google.code.gson:gson:2.3'
-    compile 'joda-time:joda-time:2.3'
 
+    compile 'com.android.support:support-v4:23.0.0'
+    compile 'com.android.support:appcompat-v7:23.0.0'
+    compile 'com.android.support:recyclerview-v7:23.0.0'
+    compile 'com.android.support:cardview-v7:23.0.0'
+
+    compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.1'
+    compile 'de.greenrobot:eventbus:2.2.1'
     compile 'com.facebook.fresco:fresco:0.6.0'
     // compile 'org.roboguice:roboguice:3.0.1'
     // provided 'org.roboguice:roboblender:3.0.1'
