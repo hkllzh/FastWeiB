@@ -1,22 +1,20 @@
 package com.hkllzh.fastweib.ui;
 
 import android.app.Activity;
+import android.os.Looper;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.internal.app.ToolbarActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.hkllzh.android.net.ResponseHandler;
 import com.hkllzh.fastweib.BaseFragment;
 import com.hkllzh.fastweib.BaseRVAdapter;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.adapter.WBListAdapter;
 import com.hkllzh.fastweib.bean.HomeTimelineBean;
-import com.hkllzh.fastweib.net.RequestHandler;
-import com.hkllzh.fastweib.net.WeiBoApi;
+import com.hkllzh.fastweib.net.api.StatusesHome_timelineApi;
 
 /**
  * 首页的内容部分
@@ -36,16 +34,16 @@ public class IndexContentFragment extends BaseFragment {
 
 
     private String mMax_id;
-    
+
     public IndexActivity parentActivity;
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if (activity instanceof IndexActivity){
+        if (activity instanceof IndexActivity) {
             parentActivity = (IndexActivity) activity;
         }
-            
+
     }
 
     @Override
@@ -73,36 +71,61 @@ public class IndexContentFragment extends BaseFragment {
     }
 
     private void requestData(final String max_id) {
-        netRequest.get(WeiBoApi.StatusesHome_timeline(mAccessToken, max_id), new RequestHandler() {
-            @Override
-            public void start() {
-                if (TextUtils.isEmpty(max_id)) {
-                    showLoading();
-                }
-            }
 
+        new StatusesHome_timelineApi(mAccessToken, max_id).execute(new ResponseHandler() {
             @Override
-            public void success(String response) {
-                HomeTimelineBean bean = new Gson().fromJson(response, HomeTimelineBean.class);
-                if (TextUtils.isEmpty(max_id)) {
-                    wbListAdapter.setData(bean.statuses);
-                } else {
-                    wbListAdapter.addMoreData(bean.statuses);
-                }
-                mMax_id = bean.max_id;
-            }
-
-            @Override
-            public void failure(String responseBody, Throwable error) {
+            public void failed(String errorInfo) {
 
             }
 
             @Override
-            public void finish() {
-                dismissLoading();
-                swipeRefreshLayout.setRefreshing(false);
+            public void success(final String success) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        HomeTimelineBean bean = new Gson().fromJson(success, HomeTimelineBean.class);
+                        if (TextUtils.isEmpty(max_id)) {
+                            wbListAdapter.setData(bean.statuses);
+                        } else {
+                            wbListAdapter.addMoreData(bean.statuses);
+                        }
+                        mMax_id = bean.max_id;
+                    }
+                });
+
             }
         });
+
+//        netRequest.get(WeiBoApi.StatusesHome_timeline(mAccessToken, max_id), new RequestHandler() {
+//            @Override
+//            public void start() {
+//                if (TextUtils.isEmpty(max_id)) {
+//                    showLoading();
+//                }
+//            }
+//
+//            @Override
+//            public void success(String response) {
+//                HomeTimelineBean bean = new Gson().fromJson(response, HomeTimelineBean.class);
+//                if (TextUtils.isEmpty(max_id)) {
+//                    wbListAdapter.setData(bean.statuses);
+//                } else {
+//                    wbListAdapter.addMoreData(bean.statuses);
+//                }
+//                mMax_id = bean.max_id;
+//            }
+//
+//            @Override
+//            public void failure(String responseBody, Throwable error) {
+//
+//            }
+//
+//            @Override
+//            public void finish() {
+//                dismissLoading();
+//                swipeRefreshLayout.setRefreshing(false);
+//            }
+//        });
     }
 
     @Override

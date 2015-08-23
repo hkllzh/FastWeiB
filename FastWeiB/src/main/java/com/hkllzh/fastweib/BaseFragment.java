@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hkllzh.fastweib.auth.AccessTokenKeeper;
-import com.hkllzh.fastweib.net.NetRequest;
 import com.hkllzh.fastweib.util.SPUtil;
 import com.hkllzh.fastweib.view.LoadingDialog;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
@@ -21,8 +20,6 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
  * FastWeiB
  */
 public abstract class BaseFragment extends Fragment {
-    protected NetRequest netRequest;
-
     protected static final SPUtil spUtil;
     protected static final int W_PX;
     protected static final int H_PX;
@@ -60,7 +57,6 @@ public abstract class BaseFragment extends Fragment {
             loadingDialog = new LoadingDialog(getActivity());
         }
 
-        netRequest = NetRequest.getInstance();
         mAccessToken = AccessTokenKeeper.readAccessToken(getActivity());
 
         initView();

@@ -9,7 +9,7 @@ android {
             storePassword 'VNtOcd44'
         }
     }
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion "23.0.0"
     sourceSets {
         main {
@@ -19,7 +19,7 @@ android {
     defaultConfig {
         applicationId "com.hkllzh.fastweib"
         minSdkVersion 14
-        targetSdkVersion 22
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
     }
@@ -54,7 +54,10 @@ dependencies {
 
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.1'
     compile 'de.greenrobot:eventbus:2.2.1'
-    compile 'com.facebook.fresco:fresco:0.6.0'
+    compile 'com.facebook.fresco:fresco:0.6.1'
+
+    // compile 'org.apache.httpcomponents:httpcore:4.4'
+
     // compile 'org.roboguice:roboguice:3.0.1'
     // provided 'org.roboguice:roboblender:3.0.1'
 }

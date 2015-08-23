@@ -1,7 +1,5 @@
 package com.hkllzh.fastweib.ui;
 
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -12,9 +10,6 @@ import android.widget.FrameLayout;
 
 import com.hkllzh.fastweib.BaseActivity;
 import com.hkllzh.fastweib.R;
-import com.hkllzh.fastweib.net.NetRequest;
-import com.hkllzh.fastweib.net.RequestHandler;
-import com.hkllzh.fastweib.net.UrlParamsBean;
 import com.squareup.okhttp.OkHttpClient;
 
 /**

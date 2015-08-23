@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBarActivity;
 
 import com.hkllzh.fastweib.auth.AccessTokenKeeper;
-import com.hkllzh.fastweib.net.NetRequest;
 import com.hkllzh.fastweib.util.SPUtil;
 import com.hkllzh.fastweib.view.LoadingDialog;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
@@ -20,8 +19,6 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
  * com.hkllzh.fastweib
  */
 public abstract class BaseActivity extends ActionBarActivity {
-
-    protected NetRequest netRequest;
 
     protected static final SPUtil spUtil;
     protected static final int W_PX;
@@ -44,7 +41,6 @@ public abstract class BaseActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mActivity = this;
-        netRequest = NetRequest.getInstance();
         mAccessToken = AccessTokenKeeper.readAccessToken(mActivity);
 
         setContentView(getContentViewId());
