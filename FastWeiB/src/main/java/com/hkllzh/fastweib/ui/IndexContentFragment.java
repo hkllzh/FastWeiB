@@ -1,19 +1,19 @@
 package com.hkllzh.fastweib.ui;
 
 import android.app.Activity;
-import android.os.Looper;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.hkllzh.android.net.ResponseHandler;
+import com.hkllzh.android.net.okhttp.OkHttpResponse;
 import com.hkllzh.fastweib.BaseFragment;
 import com.hkllzh.fastweib.BaseRVAdapter;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.adapter.WBListAdapter;
 import com.hkllzh.fastweib.bean.HomeTimelineBean;
+import com.hkllzh.fastweib.net.FastWBRequest;
 import com.hkllzh.fastweib.net.api.StatusesHome_timelineApi;
 
 /**
@@ -72,9 +72,14 @@ public class IndexContentFragment extends BaseFragment {
 
     private void requestData(final String max_id) {
 
-        new StatusesHome_timelineApi(mAccessToken, max_id).execute(new ResponseHandler() {
+        FastWBRequest.getInstance().execute(new StatusesHome_timelineApi(mAccessToken, max_id), new OkHttpResponse() {
             @Override
-            public void failed(String errorInfo) {
+            public void start() {
+
+            }
+
+            @Override
+            public void failed(final String errorInfo) {
 
             }
 
@@ -92,6 +97,10 @@ public class IndexContentFragment extends BaseFragment {
                         mMax_id = bean.max_id;
                     }
                 });
+            }
+
+            @Override
+            public void finish() {
 
             }
         });

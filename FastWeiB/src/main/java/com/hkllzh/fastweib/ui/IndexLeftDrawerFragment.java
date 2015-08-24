@@ -2,9 +2,11 @@ package com.hkllzh.fastweib.ui;
 
 import android.widget.TextView;
 
-import com.hkllzh.android.net.ResponseHandler;
+import com.hkllzh.android.net.ResponseInterface;
+import com.hkllzh.android.net.okhttp.OkHttpResponse;
 import com.hkllzh.fastweib.BaseFragment;
 import com.hkllzh.fastweib.R;
+import com.hkllzh.fastweib.net.FastWBRequest;
 import com.hkllzh.fastweib.net.api.UsersShowApi;
 
 /**
@@ -31,39 +33,32 @@ public class IndexLeftDrawerFragment extends BaseFragment {
     @Override
     protected void initData() {
 
-        new UsersShowApi(mAccessToken).execute(new ResponseHandler() {
+        FastWBRequest.getInstance().execute(new UsersShowApi(mAccessToken), new OkHttpResponse() {
+            @Override
+            public void start() {
+
+            }
+
             @Override
             public void failed(String errorInfo) {
 
             }
 
             @Override
-            public void success(String success) {
-                // tvTest.setText(success);
+            public void success(final String response) {
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        tvTest.setText(response);
+                    }
+                });
+            }
+
+            @Override
+            public void finish() {
+
             }
         });
-
-//        netRequest.get(WeiBoApi.UsersShow(mAccessToken), new RequestHandler() {
-//            @Override
-//            public void start() {
-//                showLoading();
-//            }
-//
-//            @Override
-//            public void success(String response) {
-//                tvTest.setText(response);
-//            }
-//
-//            @Override
-//            public void failure(String responseBody, Throwable error) {
-//
-//            }
-//
-//            @Override
-//            public void finish() {
-//                dismissLoading();
-//            }
-//        });
     }
 
     @Override

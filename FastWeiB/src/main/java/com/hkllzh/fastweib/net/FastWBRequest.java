@@ -1,6 +1,8 @@
 package com.hkllzh.fastweib.net;
 
-import com.hkllzh.android.net.AbstractRequest;
+import com.hkllzh.android.net.API;
+import com.hkllzh.android.net.ResponseInterface;
+import com.hkllzh.android.net.okhttp.OkHttpRequest;
 import com.squareup.okhttp.OkHttpClient;
 
 /**
@@ -10,7 +12,7 @@ import com.squareup.okhttp.OkHttpClient;
  * <p/>
  * FastWeiB
  */
-public class FastWBRequest extends AbstractRequest {
+public class FastWBRequest extends OkHttpRequest {
 
     private static FastWBRequest ourInstance = new FastWBRequest();
     private OkHttpClient okHttpClient;
@@ -27,4 +29,5 @@ public class FastWBRequest extends AbstractRequest {
     public OkHttpClient getOkHttpClient() {
         return okHttpClient;
     }
+
 }
