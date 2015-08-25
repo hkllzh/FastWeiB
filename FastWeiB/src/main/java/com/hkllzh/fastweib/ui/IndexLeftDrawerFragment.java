@@ -46,12 +46,7 @@ public class IndexLeftDrawerFragment extends BaseFragment {
 
             @Override
             public void success(final String response) {
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        tvTest.setText(response);
-                    }
-                });
+                tvTest.setText(response);
             }
 
             @Override

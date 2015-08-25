@@ -18,9 +18,9 @@ import com.hkllzh.fastweib.net.api.StatusesHome_timelineApi;
 
 /**
  * 首页的内容部分
- * <p/>
+ * <p>
  * lizheng -- 15/1/27
- * <p/>
+ * <p>
  * FastWeiB
  */
 public class IndexContentFragment extends BaseFragment {
@@ -73,21 +73,20 @@ public class IndexContentFragment extends BaseFragment {
     private void requestData(final String max_id) {
 
         FastWBRequest.getInstance().execute(new StatusesHome_timelineApi(mAccessToken, max_id), new OkHttpResponse() {
-            @Override
-            public void start() {
-
-            }
-
-            @Override
-            public void failed(final String errorInfo) {
-
-            }
-
-            @Override
-            public void success(final String success) {
-                getActivity().runOnUiThread(new Runnable() {
                     @Override
-                    public void run() {
+                    public void start() {
+                        if (TextUtils.isEmpty(max_id)) {
+                            showLoading();
+                        }
+                    }
+
+                    @Override
+                    public void failed(final String errorInfo) {
+
+                    }
+
+                    @Override
+                    public void success(final String success) {
                         HomeTimelineBean bean = new Gson().fromJson(success, HomeTimelineBean.class);
                         if (TextUtils.isEmpty(max_id)) {
                             wbListAdapter.setData(bean.statuses);
@@ -96,14 +95,15 @@ public class IndexContentFragment extends BaseFragment {
                         }
                         mMax_id = bean.max_id;
                     }
-                });
-            }
 
-            @Override
-            public void finish() {
+                    @Override
+                    public void finish() {
+                        dismissLoading();
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }
 
-            }
-        });
+        );
 
 //        netRequest.get(WeiBoApi.StatusesHome_timeline(mAccessToken, max_id), new RequestHandler() {
 //            @Override
