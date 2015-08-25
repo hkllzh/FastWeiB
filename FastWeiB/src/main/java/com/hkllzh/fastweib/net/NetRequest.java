@@ -8,7 +8,7 @@
 //import com.hkllzh.fastweib.util.LogUtil;
 //import com.hkllzh.fastweib.util.MD5Util;
 //import com.loopj.android.http.AsyncHttpClient;
-//import com.loopj.android.http.AsyncHttpResponseHandler;
+//import com.loopj.android.http.AsyncResponseHandler;
 //import com.loopj.android.http.RequestParams;
 //import com.squareup.okhttp.Callback;
 //import com.squareup.okhttp.MediaType;
@@ -135,7 +135,7 @@
 //                return;
 //            }
 //        }
-//        httpClient.get(mContext, url, params, new AsyncHttpResponseHandler() {
+//        httpClient.get(mContext, url, params, new AsyncResponseHandler() {
 //
 //            long startTime = 0l;
 //
@@ -204,7 +204,7 @@
 //    }
 //
 //    public void post(final String url, final RequestParams params, final RequestHandler handler) {
-//        httpClient.post(mContext, url, params, new AsyncHttpResponseHandler() {
+//        httpClient.post(mContext, url, params, new AsyncResponseHandler() {
 //
 //            long startTime = 0l;
 //
