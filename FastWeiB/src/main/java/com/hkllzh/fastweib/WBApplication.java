@@ -6,6 +6,8 @@ import android.util.Log;
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Configuration;
 import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.stetho.Stetho;
+import com.facebook.stetho.okhttp.StethoInterceptor;
 import com.hkllzh.fastweib.util.ACache;
 import com.hkllzh.fastweib.util.ImageLoaderOptions;
 import com.hkllzh.fastweib.util.LogUtil;
@@ -14,6 +16,7 @@ import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.squareup.okhttp.OkHttpClient;
 
 import java.util.ArrayList;
 
@@ -41,7 +44,18 @@ public class WBApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.e("FastWB","WBApplication -> onCreate()");
+        Log.e("FastWB", "WBApplication -> onCreate()");
+
+        Stetho.initialize(
+                Stetho.newInitializerBuilder(this)
+                        .enableDumpapp(
+                                Stetho.defaultDumperPluginsProvider(this))
+                        .enableWebKitInspector(
+                                Stetho.defaultInspectorModulesProvider(this))
+                        .build());
+
+        OkHttpClient client = new OkHttpClient();
+        client.networkInterceptors().add(new StethoInterceptor());
 
         Fresco.initialize(this);
         // 初始化和是否为正式版本有关的配置
