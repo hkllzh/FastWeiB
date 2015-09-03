@@ -1,6 +1,6 @@
 package com.hkllzh.fastweib.net.api;
 
-import com.hkllzh.android.net.AbstractApi;
+import com.hkllzh.android.net.impl.AbstractApiImpl;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 /**
@@ -10,7 +10,7 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
  * <p/>
  * FastWeiB
  */
-public abstract class FastWBApi extends AbstractApi {
+public abstract class FastWBApi extends AbstractApiImpl {
 
     protected Oauth2AccessToken mAccessToken;
 

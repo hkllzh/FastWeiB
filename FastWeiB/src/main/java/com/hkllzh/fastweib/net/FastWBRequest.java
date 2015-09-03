@@ -1,7 +1,5 @@
 package com.hkllzh.fastweib.net;
 
-import com.hkllzh.android.net.API;
-import com.hkllzh.android.net.ResponseInterface;
 import com.hkllzh.android.net.okhttp.OkHttpRequest;
 import com.squareup.okhttp.OkHttpClient;
 

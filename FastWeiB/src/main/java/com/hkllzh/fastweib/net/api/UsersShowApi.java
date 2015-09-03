@@ -28,17 +28,17 @@ public class UsersShowApi extends FastWBApi {
     }
 
     @Override
-    public String getRequestURL() {
+    public String requestURL() {
         return "https://api.weibo.com/2/users/show.json";
     }
 
     @Override
-    public RequestMethod getRequestMethod() {
+    public RequestMethod requestMethod() {
         return RequestMethod.GET;
     }
 
     @Override
-    public RequestParams getRequestParams() {
+    public RequestParams requestParams() {
         RequestParams params = new RequestParams();
         params.put("access_token", mAccessToken.getToken());
         params.put("uid", mAccessToken.getUid());
