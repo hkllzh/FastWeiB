@@ -1,3 +1,3 @@
-[submodule "baseAndroid"]
-	path = baseAndroid
+[submodule "BaseAndroid"]
+	path = BaseAndroid
 	url = https://github.com/hkllzh/BaseAndroid.git
