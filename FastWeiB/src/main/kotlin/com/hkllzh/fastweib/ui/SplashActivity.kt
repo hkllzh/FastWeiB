@@ -8,12 +8,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-
-import com.hkllzh.fastweib.BaseActivity
+import com.hkllzh.android.ui.BaseActivity
 import com.hkllzh.fastweib.C
+import com.hkllzh.fastweib.FWBBaseActivity
 import com.hkllzh.fastweib.R
 import com.hkllzh.fastweib.auth.AccessTokenKeeper
-import com.hkllzh.fastweib.util.LogUtil
 import com.sina.weibo.sdk.auth.AuthInfo
 import com.sina.weibo.sdk.auth.Oauth2AccessToken
 import com.sina.weibo.sdk.auth.WeiboAuthListener
@@ -32,7 +31,7 @@ import com.sina.weibo.sdk.exception.WeiboException
  *
  * FastWeiB
  */
-public class SplashActivity : BaseActivity() {
+public class SplashActivity : FWBBaseActivity() {
     private var tvTips: TextView? = null
     private var btnAuth: Button? = null
 
@@ -54,7 +53,7 @@ public class SplashActivity : BaseActivity() {
             // 进入主程序
             Handler().postDelayed(object : Runnable {
                 override fun run() {
-                    LogUtil.e(true, "// 进入主程序// 进入主程序// 进入主程序")
+                    BaseActivity.log.e("SplashActivity", "// 进入主程序// 进入主程序// 进入主程序")
                     startActivity(Intent(mActivity, IndexActivity::class.java))
                     finish()
                     // startActivity(new Intent(mActivity, TestWebViewActivity.class));
@@ -63,10 +62,30 @@ public class SplashActivity : BaseActivity() {
             }, 1500)
         }
 
-        var list = listOf(1,123,4,32,4,12,4,324,23,4,324,32,41)
-        for ((k,v) in list.withIndex()){
-            LogUtil.e("k->$k, v->$v")
+
+        // demo 1
+        var list = listOf(1, 123, 4, 32, 4, 12, 4, 324, 23, 4, 324, 32, 41)
+        for ((k, v) in list.withIndex()) {
+            BaseActivity.log.i("SplashActivity", "k->$k, v->$v")
         }
+
+        // demo 2
+        testLambdas();
+
+
+    }
+
+    private fun testLambdas() {
+        var sum: (Int, Int) -> Int = { x: Int, y: Int -> x + y }
+
+        var three = sum(1, 2)
+
+        fun apply(i: Int, f: (Int) -> Int) = f(i)
+
+        apply(2, { x -> x + 25 })
+
+        apply(2) { x -> x + 123 }
+
     }
 
     override fun setListener() {

@@ -2,7 +2,7 @@ package com.hkllzh.fastweib.ui;
 
 import android.webkit.WebView;
 
-import com.hkllzh.fastweib.BaseActivity;
+import com.hkllzh.fastweib.FWBBaseActivity;
 import com.hkllzh.fastweib.R;
 
 /**
@@ -12,7 +12,7 @@ import com.hkllzh.fastweib.R;
  * <p/>
  * FastWeiB
  */
-public class TestWebViewActivity extends BaseActivity {
+public class TestWebViewActivity extends FWBBaseActivity {
 
     WebView webview;
 

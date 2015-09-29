@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.hkllzh.fastweib.auth.AccessTokenKeeper;
-import com.hkllzh.fastweib.util.SPUtil;
+import com.hkllzh.android.util.sharedpreferences.SPUtil;
 import com.hkllzh.fastweib.view.LoadingDialog;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
@@ -24,7 +24,7 @@ public abstract class BaseFragment extends Fragment {
     protected static final int W_PX;
     protected static final int H_PX;
 
-    private BaseActivity mBaseActivity;
+    private FWBBaseActivity mBaseActivity;
 
     private LoadingDialog loadingDialog;
 
@@ -40,8 +40,8 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        if (activity instanceof BaseActivity) {
-            mBaseActivity = (BaseActivity) activity;
+        if (activity instanceof FWBBaseActivity) {
+            mBaseActivity = (FWBBaseActivity) activity;
         }
     }
 

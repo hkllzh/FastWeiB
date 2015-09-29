@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.hkllzh.fastweib.BaseActivity;
+import com.hkllzh.fastweib.FWBBaseActivity;
 import com.hkllzh.fastweib.R;
 import com.squareup.okhttp.OkHttpClient;
 
@@ -18,7 +18,7 @@ import com.squareup.okhttp.OkHttpClient;
  *
  * @author lizheng -- li396858359@163.com
  */
-public class IndexActivity extends BaseActivity {
+public class IndexActivity extends FWBBaseActivity {
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
@@ -46,7 +46,7 @@ public class IndexActivity extends BaseActivity {
 
         setSupportActionBar(toolbar);
 
-        
+
 
         drawerLayout.setDrawerListener(new ActionBarDrawerToggle(mActivity, drawerLayout, toolbar, R.string.weibosdk_demo_feature_open_api, R.string.weibosdk_demo_share_video_desc) {
             @Override
@@ -77,6 +77,6 @@ public class IndexActivity extends BaseActivity {
     @Override
     protected void setListener() {
     }
-    
-    
+
+
 }

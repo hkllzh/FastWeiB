@@ -1,6 +1,5 @@
 package com.hkllzh.fastweib;
 
-import android.app.Application;
 import android.util.Log;
 
 import com.activeandroid.ActiveAndroid;
@@ -8,17 +7,15 @@ import com.activeandroid.Configuration;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.stetho.Stetho;
 import com.facebook.stetho.okhttp.StethoInterceptor;
-import com.hkllzh.fastweib.util.ACache;
+import com.hkllzh.android.AppConfig;
+import com.hkllzh.android.BaseApplication;
+import com.hkllzh.android.util.log.LogInterface;
 import com.hkllzh.fastweib.util.ImageLoaderOptions;
-import com.hkllzh.fastweib.util.LogUtil;
-import com.hkllzh.fastweib.util.SPUtil;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.squareup.okhttp.OkHttpClient;
-
-import java.util.ArrayList;
 
 /**
  * 此程序自定义的Application
@@ -36,15 +33,19 @@ import java.util.ArrayList;
  * <p/>
  * FastWeiB
  */
-public class WBApplication extends Application {
+public class FWBApplication extends BaseApplication {
 
-    private static final String TAG = "* WBApplication * ";
-    private static final boolean isShowLog = true;
+    private static final String TAG = "* FWBApplication * ";
+
+    /**
+     * true，正式版本、false，debug版本
+     */
+    public static final boolean isRelease = false;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.e("FastWB", "WBApplication -> onCreate()");
+        Log.e("FastWB", "FWBApplication -> onCreate()");
 
         Stetho.initialize(
                 Stetho.newInitializerBuilder(this)
@@ -58,9 +59,6 @@ public class WBApplication extends Application {
         client.networkInterceptors().add(new StethoInterceptor());
 
         Fresco.initialize(this);
-        // 初始化和是否为正式版本有关的配置
-        isRelease(false);
-
         // 错误处理
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(this);
@@ -70,12 +68,15 @@ public class WBApplication extends Application {
 
         // 图片加载初始化
         initImageLoader();
+    }
 
-        // 缓存初始化
-        ACache.init(this);
-
-        // 全局配置
-        SPUtil.init(this, "sp_wei_b");
+    @Override
+    protected AppConfig getAppConfig() {
+        AppConfig.Builder builder = new AppConfig.Builder();
+        builder.defaultSpFileName("sp_wei_b")
+                .showLog(!isRelease)// 和当前版本相反。线上版本不打印、开发版本打印
+                .showLogLevel(LogInterface.INFO);
+        return builder.builder();
     }
 
     private void initDB() {
@@ -90,7 +91,7 @@ public class WBApplication extends Application {
     private void initImageLoader() {
         long maxMemory = Runtime.getRuntime().maxMemory();
         long cache = maxMemory / 10;// 使用程序可用内存的1/10左右图片加载的内存
-        LogUtil.e(isShowLog, TAG + "maxMemory:" + maxMemory + " -- use:" + cache + " -- " + (cache / 1024 / 1024) + "M");
+        log.e(TAG, "maxMemory:" + maxMemory + " -- use:" + cache + " -- " + (cache / 1024 / 1024) + "M");
 
         ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(this)
                 .memoryCache(new LRULimitedMemoryCache((int) cache))
@@ -102,15 +103,5 @@ public class WBApplication extends Application {
                 .build();
 
         ImageLoader.getInstance().init(configuration);
-    }
-
-    /**
-     * 是否为正式发布版本
-     * true，正式版本、false，debug版本
-     *
-     * @param isRelease 是否为正式发布版本
-     */
-    public void isRelease(boolean isRelease) {
-        LogUtil.init("FastWB", !isRelease);
     }
 }
