@@ -30,6 +30,7 @@ public class WBTimeUtil {
         months.put("Jul", "7");
         months.put("Aug", "8");
         months.put("Sept", "9");
+        months.put("Sep", "9");
         months.put("Oct", "10");
         months.put("Nov", "11");
         months.put("Dec", "12");
