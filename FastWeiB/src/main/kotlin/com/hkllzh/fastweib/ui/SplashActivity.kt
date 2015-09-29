@@ -62,6 +62,11 @@ public class SplashActivity : BaseActivity() {
                 }
             }, 1500)
         }
+
+        var list = listOf(1,123,4,32,4,12,4,324,23,4,324,32,41)
+        for ((k,v) in list.withIndex()){
+            LogUtil.e("k->$k, v->$v")
+        }
     }
 
     override fun setListener() {

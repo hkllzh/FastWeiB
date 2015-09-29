@@ -82,8 +82,8 @@ public class WBListImageView extends RelativeLayout {
 //        }
 
         for (PicUrl s : pic_urls) {
-            Uri smallUri = Uri.parse(s.thumbnail_pic.replace("thumbnail", "small"));
-            Uri largeUri = Uri.parse(s.thumbnail_pic.replace("thumbnail", "large"));
+            Uri smallUri = Uri.parse(s.getThumbnail_pic().replace("thumbnail", "small"));
+            Uri largeUri = Uri.parse(s.getThumbnail_pic().replace("thumbnail", "large"));
             SimpleDraweeView sv = new SimpleDraweeView(getContext());
 
             ImageRequest r = ImageRequestBuilder

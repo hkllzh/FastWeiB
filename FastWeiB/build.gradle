@@ -56,7 +56,7 @@ dependencies {
 
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.1'
     compile 'de.greenrobot:eventbus:2.2.1'
-    compile 'com.facebook.fresco:fresco:0.6.1'
+    compile 'com.facebook.fresco:fresco:0.7.0'
 
     compile 'com.facebook.stetho:stetho:1.1.1'
     compile 'com.facebook.stetho:stetho-okhttp:1.1.1'
