@@ -2,8 +2,7 @@ package com.hkllzh.fastweib;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 
 import com.hkllzh.fastweib.auth.AccessTokenKeeper;
 import com.hkllzh.fastweib.util.SPUtil;
@@ -18,7 +17,7 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
  * <p/>
  * com.hkllzh.fastweib
  */
-public abstract class BaseActivity extends ActionBarActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected static final SPUtil spUtil;
     protected static final int W_PX;
