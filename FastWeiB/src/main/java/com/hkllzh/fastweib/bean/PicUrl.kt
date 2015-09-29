@@ -10,5 +10,5 @@ package com.hkllzh.fastweib.bean
  * FastWeiB
  */
 public class PicUrl {
-    public var thumbnail_pic: String
+    public var thumbnail_pic: String = ""
 }
