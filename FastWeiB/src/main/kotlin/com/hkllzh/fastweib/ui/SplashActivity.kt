@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import com.hkllzh.android.ui.BaseActivity
 import com.hkllzh.fastweib.C
 import com.hkllzh.fastweib.FWBBaseActivity
 import com.hkllzh.fastweib.R
@@ -53,7 +52,7 @@ public class SplashActivity : FWBBaseActivity() {
             // 进入主程序
             Handler().postDelayed(object : Runnable {
                 override fun run() {
-                    BaseActivity.log.e("SplashActivity", "// 进入主程序// 进入主程序// 进入主程序")
+                    log.e("SplashActivity", "// 进入主程序// 进入主程序// 进入主程序")
                     startActivity(Intent(mActivity, IndexActivity::class.java))
                     finish()
                     // startActivity(new Intent(mActivity, TestWebViewActivity.class));
@@ -66,7 +65,7 @@ public class SplashActivity : FWBBaseActivity() {
         // demo 1
         var list = listOf(1, 123, 4, 32, 4, 12, 4, 324, 23, 4, 324, 32, 41)
         for ((k, v) in list.withIndex()) {
-            BaseActivity.log.i("SplashActivity", "k->$k, v->$v")
+            log.i("SplashActivity", "k->$k, v->$v")
         }
 
         // demo 2
