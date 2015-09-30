@@ -12,6 +12,8 @@ import com.hkllzh.fastweib.R
  */
 public class SingleWeiboActivity : FWBBaseActivity() {
 
+
+
     override fun getContentViewId(): Int {
         return R.layout.ac_single_weibo;
     }
