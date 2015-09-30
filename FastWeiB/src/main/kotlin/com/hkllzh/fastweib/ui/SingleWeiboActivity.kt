@@ -19,7 +19,6 @@ public class SingleWeiboActivity : FWBBaseActivity() {
     private var tabLayout: TabLayout? = null
     private var viewpager: ViewPager? = null
 
-    // private var adapter: SingleWeiBoInfoAdapter? = null
     private var adapter: SingleWeiBoViewPagerAdapter? = null
 
     override fun getContentViewId(): Int {
@@ -33,20 +32,13 @@ public class SingleWeiboActivity : FWBBaseActivity() {
     }
 
     override fun initData() {
-        toolbar?.title = "单条信息"
+        toolbar?.title = "正文"
         setSupportActionBar(toolbar)
-
 
         adapter = SingleWeiBoViewPagerAdapter(supportFragmentManager)
         viewpager?.adapter = adapter
 
         tabLayout?.setupWithViewPager(viewpager)
-
-
-
-
-
-        // adapter = SingleWeiBoInfoAdapter()
     }
 
     override fun setListener() {
