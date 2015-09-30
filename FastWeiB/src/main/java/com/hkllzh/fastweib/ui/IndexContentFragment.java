@@ -126,7 +126,7 @@ public class IndexContentFragment extends BaseFragment {
         wbListAdapter.setOnItemClickListener(new BaseRVAdapter.OnItemClickListener<StatusBean>() {
             @Override
             public void onItemClick(StatusBean bean) {
-                startActivity(new Intent(getActivity(), SingleWeiboActivity.class));
+                startActivity(new Intent(getActivity(), SingleWeiboActivity.class).putExtra("id",bean.id));
             }
         });
     }

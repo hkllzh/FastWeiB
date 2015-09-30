@@ -1,5 +1,6 @@
 package com.hkllzh.fastweib.ui
 
+import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
@@ -21,6 +22,12 @@ public class SingleWeiboActivity : FWBBaseActivity() {
 
     private var adapter: SingleWeiBoViewPagerAdapter? = null
 
+    private var id = ""
+
+    override fun loadIntentData() {
+        id = intent.getStringExtra("id")
+    }
+
     override fun getContentViewId(): Int {
         return R.layout.ac_single_weibo;
     }
@@ -35,10 +42,35 @@ public class SingleWeiboActivity : FWBBaseActivity() {
         toolbar?.title = "正文"
         setSupportActionBar(toolbar)
 
+
+        val fragments = initFragmentPages()
+
         adapter = SingleWeiBoViewPagerAdapter(supportFragmentManager)
+        adapter?.setPages(fragments.toArrayList())
         viewpager?.adapter = adapter
 
         tabLayout?.setupWithViewPager(viewpager)
+    }
+
+    private fun initFragmentPages(): List<ReviewsFragment> {
+        var reviewsFragment = ReviewsFragment()
+        var bu: Bundle = Bundle()
+        bu.putString("id", id)
+        reviewsFragment.arguments = bu
+
+        var reviewsFragment2 = ReviewsFragment()
+        var bu2: Bundle = Bundle()
+        bu2.putString("id", id)
+        reviewsFragment2.arguments = bu
+
+        var reviewsFragment3 = ReviewsFragment()
+        var bu3: Bundle = Bundle()
+        bu3.putString("id", id)
+        reviewsFragment3.arguments = bu
+
+
+        val fragments = listOf(reviewsFragment, reviewsFragment2, reviewsFragment3)
+        return fragments
     }
 
     override fun setListener() {

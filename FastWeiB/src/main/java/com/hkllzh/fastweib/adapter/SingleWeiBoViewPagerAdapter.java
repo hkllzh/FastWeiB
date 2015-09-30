@@ -4,8 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.hkllzh.fastweib.ui.ReviewsFragment;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +19,12 @@ public class SingleWeiBoViewPagerAdapter extends FragmentPagerAdapter {
 
     private static final int COUNT = 3;
 
+    private ArrayList<Fragment> pages;
+
+    public void setPages(final ArrayList<Fragment> pages) {
+        this.pages = pages;
+    }
+
     public SingleWeiBoViewPagerAdapter(FragmentManager fm) {
         super(fm);
         pageTitleMap = new HashMap<>(COUNT);
@@ -30,7 +35,7 @@ public class SingleWeiBoViewPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return new ReviewsFragment();
+        return pages.get(position);
     }
 
     @Override

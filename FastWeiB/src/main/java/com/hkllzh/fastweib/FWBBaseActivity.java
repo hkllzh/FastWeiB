@@ -25,11 +25,15 @@ public abstract class FWBBaseActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         mAccessToken = AccessTokenKeeper.readAccessToken(mActivity);
 
+        loadIntentData();
         setContentView(getContentViewId());
         initView();
         initData();
         setListener();
 
+    }
+
+    protected void loadIntentData() {
     }
 
     protected void showLoading() {
