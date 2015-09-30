@@ -1,6 +1,7 @@
 package com.hkllzh.fastweib.ui;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,14 +14,15 @@ import com.hkllzh.fastweib.BaseRVAdapter;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.adapter.WBListAdapter;
 import com.hkllzh.fastweib.bean.HomeTimelineBean;
+import com.hkllzh.fastweib.bean.StatusBean;
 import com.hkllzh.fastweib.net.FastWBRequest;
 import com.hkllzh.fastweib.net.api.StatusesHome_timelineApi;
 
 /**
  * 首页的内容部分
- * <p>
+ * <p/>
  * lizheng -- 15/1/27
- * <p>
+ * <p/>
  * FastWeiB
  */
 public class IndexContentFragment extends BaseFragment {
@@ -104,37 +106,6 @@ public class IndexContentFragment extends BaseFragment {
                 }
 
         );
-
-//        netRequest.get(WeiBoApi.StatusesHome_timeline(mAccessToken, max_id), new RequestHandler() {
-//            @Override
-//            public void start() {
-//                if (TextUtils.isEmpty(max_id)) {
-//                    showLoading();
-//                }
-//            }
-//
-//            @Override
-//            public void success(String response) {
-//                HomeTimelineBean bean = new Gson().fromJson(response, HomeTimelineBean.class);
-//                if (TextUtils.isEmpty(max_id)) {
-//                    wbListAdapter.setData(bean.statuses);
-//                } else {
-//                    wbListAdapter.addMoreData(bean.statuses);
-//                }
-//                mMax_id = bean.max_id;
-//            }
-//
-//            @Override
-//            public void failure(String responseBody, Throwable error) {
-//
-//            }
-//
-//            @Override
-//            public void finish() {
-//                dismissLoading();
-//                swipeRefreshLayout.setRefreshing(false);
-//            }
-//        });
     }
 
     @Override
@@ -149,6 +120,13 @@ public class IndexContentFragment extends BaseFragment {
             @Override
             public void loadMore() {
                 requestData(mMax_id);
+            }
+        });
+
+        wbListAdapter.setOnItemClickListener(new BaseRVAdapter.OnItemClickListener<StatusBean>() {
+            @Override
+            public void onItemClick(StatusBean bean) {
+                startActivity(new Intent(getActivity(), SingleWeiboActivity.class));
             }
         });
     }

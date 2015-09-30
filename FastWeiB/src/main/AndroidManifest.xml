@@ -27,6 +27,7 @@
             android:screenOrientation="portrait" />
 
         <activity android:name=".ui.TestWebViewActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.SingleWeiboActivity" android:screenOrientation="portrait" />
 
         <activity
             android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"

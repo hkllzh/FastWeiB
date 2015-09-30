@@ -49,8 +49,7 @@ public abstract class BaseRVAdapter<VH extends RecyclerView.ViewHolder, T> exten
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        // baseOnBindViewHolder((VH) holder, position);
-        baseOnBindViewHolder((VH)holder,mData.get(position));
+        baseOnBindViewHolder((VH) holder, mData.get(position));
         if (getItemCount() > 1 && getItemCount() - 2 == position) {
             if (null != loadMore) {
                 loadMore.loadMore();
@@ -66,12 +65,20 @@ public abstract class BaseRVAdapter<VH extends RecyclerView.ViewHolder, T> exten
         return mData.size();
     }
 
-    // public abstract void baseOnBindViewHolder(VH holder, int position);
-    
     public abstract void baseOnBindViewHolder(VH holder, T bean);
 
 
     public interface LoadMore {
-        public void loadMore();
+        void loadMore();
+    }
+
+    public void setOnItemClickListener(OnItemClickListener<T> listener) {
+        this.mOnItemClickListener = listener;
+    }
+
+    protected OnItemClickListener mOnItemClickListener;
+
+    public interface OnItemClickListener<T> {
+        void onItemClick(T bean);
     }
 }

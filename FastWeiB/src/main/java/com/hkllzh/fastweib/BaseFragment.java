@@ -2,13 +2,14 @@ package com.hkllzh.fastweib;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hkllzh.fastweib.auth.AccessTokenKeeper;
 import com.hkllzh.android.util.sharedpreferences.SPUtil;
+import com.hkllzh.fastweib.auth.AccessTokenKeeper;
 import com.hkllzh.fastweib.view.LoadingDialog;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
@@ -90,6 +91,10 @@ public abstract class BaseFragment extends Fragment {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    protected <T extends View> T findViewById(@IdRes int id) {
+        return (T) getView().findViewById(id);
     }
 
     public abstract int getContentViewId();

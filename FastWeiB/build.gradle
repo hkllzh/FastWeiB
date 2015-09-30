@@ -11,7 +11,7 @@ android {
         }
     }
     compileSdkVersion 23
-    buildToolsVersion "23.0.0"
+    buildToolsVersion "23.0.1"
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         main {
@@ -49,22 +49,19 @@ dependencies {
     // weibo
     compile files('libs/weibosdkcore.jar')
 
-    compile 'com.android.support:support-v4:23.0.0'
-    compile 'com.android.support:appcompat-v7:23.0.0'
-    compile 'com.android.support:recyclerview-v7:23.0.0'
-    compile 'com.android.support:cardview-v7:23.0.0'
+    compile 'com.android.support:support-v4:23.0.1'
+    compile 'com.android.support:appcompat-v7:23.0.1'
+    compile 'com.android.support:recyclerview-v7:23.0.1'
+    compile 'com.android.support:cardview-v7:23.0.1'
 
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.1'
     compile 'de.greenrobot:eventbus:2.2.1'
     compile 'com.facebook.fresco:fresco:0.7.0'
 
+    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.13.1514'
+
     compile 'com.facebook.stetho:stetho:1.1.1'
     compile 'com.facebook.stetho:stetho-okhttp:1.1.1'
 
-    compile 'org.jetbrains.kotlin:kotlin-stdlib:0.13.1514'
-
-    // compile 'org.apache.httpcomponents:httpcore:4.4'
-
-    // compile 'org.roboguice:roboguice:3.0.1'
-    // provided 'org.roboguice:roboblender:3.0.1'
+    compile 'com.android.support:design:23.0.1'
 }

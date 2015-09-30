@@ -1,6 +1,5 @@
 package com.hkllzh.fastweib.adapter;
 
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,7 +36,7 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
     }
 
     @Override
-    public void baseOnBindViewHolder(WBListViewHolder holder, StatusBean bean) {
+    public void baseOnBindViewHolder(WBListViewHolder holder, final StatusBean bean) {
         // holder.imavHeadPortrait.setImageURI(Uri.parse(bean.user.avatar_hd));
         ImageUtil.Companion.show(holder.imavHeadPortrait, bean.user.avatar_hd);
 
@@ -71,6 +70,15 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
                 holder.wbImages.setVisibility(View.GONE);
             }
         }
+
+        holder.rootView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != mOnItemClickListener) {
+                    mOnItemClickListener.onItemClick(bean);
+                }
+            }
+        });
     }
 
     class WBListViewHolder extends RecyclerView.ViewHolder {
@@ -82,9 +90,11 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
         public TextView tvRetweetedStatus;
         public View vLine;
         public WBListImageView wbImages;
+        public View rootView;
 
         public WBListViewHolder(View itemView) {
             super(itemView);
+            rootView = itemView;
             imavHeadPortrait = (SimpleDraweeView) itemView.findViewById(R.id.imavHeadPortrait);
             tvName = (TextView) itemView.findViewById(R.id.tvName);
             tvTime = (TextView) itemView.findViewById(R.id.tvTime);
