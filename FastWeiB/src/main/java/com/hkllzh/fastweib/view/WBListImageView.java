@@ -43,60 +43,15 @@ public class WBListImageView extends RelativeLayout {
         int _100dp = MeasureUtil.dip2px(getContext(), 100);
         RelativeLayout.LayoutParams layoutParams = new LayoutParams(_100dp, _100dp);
 
-//        for (PicUrl s : pic_urls) {
-//            ImageView imageView = new ImageView(getContext());
-//            imageView.setContentDescription(s.thumbnail_pic);
-//            // imageView.setBackgroundResource(R.mipmap.pic_listimage_default);
-//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//
-//            ImageLoader.getInstance().displayImage(s.thumbnail_pic.replace("thumbnail", "small"), imageView, ImageLoaderOptions.normalOptionsWithDisplayer(), new ImageLoadingListener() {
-//                @Override
-//                public void onLoadingStarted(String imageUri, View view) {
-//                    ImageView v = (ImageView) view;
-//                    if (null != v) {
-//                        v.setBackgroundResource(R.mipmap.pic_listimage_default);
-//                    }
-//                }
-//
-//                @Override
-//                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-//
-//                }
-//
-//                @Override
-//                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-//                    ImageView v = (ImageView) view;
-//                    if (null != v) {
-//                        v.setBackgroundDrawable(null);
-//                    }
-//
-//                }
-//
-//                @Override
-//                public void onLoadingCancelled(String imageUri, View view) {
-//
-//                }
-//            });
-//
-//            addView(imageView,layoutParams);
-//        }
-
         for (PicUrl s : pic_urls) {
             Uri smallUri = Uri.parse(s.getThumbnail_pic().replace("thumbnail", "small"));
-            Uri largeUri = Uri.parse(s.getThumbnail_pic().replace("thumbnail", "large"));
+            Uri bmiddleUri = Uri.parse(s.getThumbnail_pic().replace("thumbnail", "bmiddle"));
             SimpleDraweeView sv = new SimpleDraweeView(getContext());
 
-            ImageRequest r = ImageRequestBuilder
-                    .newBuilderWithSource(smallUri)
-                    .build();
-
-
             DraweeController controller = Fresco.newDraweeControllerBuilder()
-                    .setUri(smallUri)
-                            // .setLowResImageRequest(r)
-                            // .setLowResImageRequest(ImageRequest.fromUri(smallUri))
-                            // .setImageRequest(r)
-                            // .setAutoPlayAnimations(true)
+                    .setLowResImageRequest(ImageRequest.fromUri(smallUri))
+                    .setImageRequest(ImageRequest.fromUri(bmiddleUri))
+                    .setAutoPlayAnimations(true)
                     .build();
 
 
@@ -108,8 +63,6 @@ public class WBListImageView extends RelativeLayout {
                     .build();
 
             sv.setHierarchy(hierarchy);
-
-
             sv.setController(controller);
             // sv.setImageURI();
             addView(sv, layoutParams);
@@ -134,7 +87,9 @@ public class WBListImageView extends RelativeLayout {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         // LogUtil.e(TAG + "onLayout - W:" + getWidth() + " H:" + getHeight());
-
+        if (0 == getChildCount()) {
+            return;
+        }
         int w = getWidth() / 3;
         int _2dp = MeasureUtil.dip2px(getContext(), 2);
         int allViewCounts = getChildCount();
