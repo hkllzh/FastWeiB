@@ -46,8 +46,6 @@ public class IndexActivity extends FWBBaseActivity {
 
         setSupportActionBar(toolbar);
 
-
-
         drawerLayout.setDrawerListener(new ActionBarDrawerToggle(mActivity, drawerLayout, toolbar, R.string.weibosdk_demo_feature_open_api, R.string.weibosdk_demo_share_video_desc) {
             @Override
             public void onDrawerOpened(View drawerView) {
@@ -69,7 +67,6 @@ public class IndexActivity extends FWBBaseActivity {
 
 
         OkHttpClient okHttpClient = new OkHttpClient();
-
 
 
     }

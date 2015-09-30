@@ -4,7 +4,6 @@ import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -12,8 +11,8 @@ import com.hkllzh.fastweib.BaseRVAdapter;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.bean.StatusBean;
 import com.hkllzh.fastweib.util.WBTimeUtil;
+import com.hkllzh.fastweib.util.image.ImageUtil;
 import com.hkllzh.fastweib.view.WBListImageView;
-import com.nostra13.universalimageloader.core.ImageLoader;
 
 /**
  * 微博列表适配器
@@ -39,8 +38,9 @@ public class WBListAdapter extends BaseRVAdapter<WBListAdapter.WBListViewHolder,
 
     @Override
     public void baseOnBindViewHolder(WBListViewHolder holder, StatusBean bean) {
-        // ImageLoader.getInstance().displayImage(bean.user.avatar_hd, holder.imavHeadPortrait);
-        holder.imavHeadPortrait.setImageURI(Uri.parse(bean.user.avatar_hd));
+        // holder.imavHeadPortrait.setImageURI(Uri.parse(bean.user.avatar_hd));
+        ImageUtil.Companion.show(holder.imavHeadPortrait, bean.user.avatar_hd);
+
         holder.tvName.setText(bean.user.screen_name);
         holder.tvTime.setText(WBTimeUtil.time2Show(WBTimeUtil.parse(bean.created_at)));
         holder.tvContent.setText(bean.text);
