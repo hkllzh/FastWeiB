@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.widget.Toolbar
+import com.hkllzh.android.ui.BaseActivity
 import com.hkllzh.fastweib.FWBBaseActivity
 import com.hkllzh.fastweib.R
 import com.hkllzh.fastweib.adapter.SingleWeiBoViewPagerAdapter
@@ -41,6 +42,7 @@ public class SingleWeiboActivity : FWBBaseActivity() {
     override fun initData() {
         toolbar?.title = "正文"
         setSupportActionBar(toolbar)
+        BaseActivity._H_PX;
 
 
         val fragments = initFragmentPages()

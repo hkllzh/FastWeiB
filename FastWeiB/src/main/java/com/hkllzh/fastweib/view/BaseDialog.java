@@ -1,5 +1,6 @@
 package com.hkllzh.fastweib.view;
 
+import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Point;
@@ -53,14 +54,14 @@ public abstract class BaseDialog extends Dialog {
         WindowManager.LayoutParams p = window.getAttributes();
         Display d = getWindow().getWindowManager().getDefaultDisplay();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR2) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB_MR2) {
+            p.height = d.getHeight();
+            p.width = d.getWidth();
+        } else {
             Point point = new Point();
             d.getSize(point);
             p.width = point.x;
             p.height = point.y;
-        } else {
-            p.height = d.getHeight();
-            p.width = d.getWidth();
         }
         window.setAttributes(p);
 

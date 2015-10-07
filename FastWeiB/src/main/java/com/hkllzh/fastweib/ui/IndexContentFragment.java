@@ -9,8 +9,8 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 import com.hkllzh.android.net.okhttp.OkHttpResponse;
-import com.hkllzh.fastweib.BaseFragment;
 import com.hkllzh.fastweib.BaseRVAdapter;
+import com.hkllzh.fastweib.FWBBaseFragment;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.adapter.WBListAdapter;
 import com.hkllzh.fastweib.bean.HomeTimelineBean;
@@ -25,7 +25,7 @@ import com.hkllzh.fastweib.net.api.StatusesHome_timelineApi;
  * <p/>
  * FastWeiB
  */
-public class IndexContentFragment extends BaseFragment {
+public class IndexContentFragment extends FWBBaseFragment {
 
     private static final String TAG = "* IndexContentFragment * ";
     private static final boolean isShowLog = true;

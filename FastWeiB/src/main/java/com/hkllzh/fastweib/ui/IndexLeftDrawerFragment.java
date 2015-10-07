@@ -4,7 +4,7 @@ import android.widget.TextView;
 
 import com.hkllzh.android.net.ResponseInterface;
 import com.hkllzh.android.net.okhttp.OkHttpResponse;
-import com.hkllzh.fastweib.BaseFragment;
+import com.hkllzh.fastweib.FWBBaseFragment;
 import com.hkllzh.fastweib.R;
 import com.hkllzh.fastweib.net.FastWBRequest;
 import com.hkllzh.fastweib.net.api.UsersShowApi;
@@ -16,7 +16,7 @@ import com.hkllzh.fastweib.net.api.UsersShowApi;
  * <p/>
  * FastWeiB
  */
-public class IndexLeftDrawerFragment extends BaseFragment {
+public class IndexLeftDrawerFragment extends FWBBaseFragment {
 
     private TextView tvTest;
 

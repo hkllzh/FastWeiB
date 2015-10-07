@@ -1,14 +1,13 @@
 package com.hkllzh.fastweib;
 
-import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.hkllzh.android.util.sharedpreferences.SPUtil;
+import com.hkllzh.android.ui.BaseFragment;
 import com.hkllzh.fastweib.auth.AccessTokenKeeper;
 import com.hkllzh.fastweib.view.LoadingDialog;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
@@ -20,10 +19,7 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
  * <p/>
  * FastWeiB
  */
-public abstract class BaseFragment extends Fragment {
-    protected static final SPUtil spUtil;
-    protected static final int W_PX;
-    protected static final int H_PX;
+public abstract class FWBBaseFragment extends BaseFragment {
 
     private FWBBaseActivity mBaseActivity;
 
@@ -32,14 +28,8 @@ public abstract class BaseFragment extends Fragment {
     // 微博token类
     protected Oauth2AccessToken mAccessToken;
 
-    static {
-        spUtil = SPUtil.getInstance();
-        W_PX = spUtil.getInt(C.SP.SCREEN_WIDTH, 0);
-        H_PX = spUtil.getInt(C.SP.SCREEN_HEIGHT, 0);
-    }
-
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
         if (activity instanceof FWBBaseActivity) {
             mBaseActivity = (FWBBaseActivity) activity;

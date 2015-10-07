@@ -4,7 +4,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.hkllzh.android.net.okhttp.OkHttpResponse
 import com.hkllzh.android.util.log.LogHandler
-import com.hkllzh.fastweib.BaseFragment
+import com.hkllzh.fastweib.FWBBaseFragment
 import com.hkllzh.fastweib.R
 import com.hkllzh.fastweib.adapter.SingleWeiBoInfoAdapter
 import com.hkllzh.fastweib.net.FastWBRequest
@@ -15,7 +15,7 @@ import com.hkllzh.fastweib.net.api.StatusesRepost_timeline
  *
  * lizheng -- 2015/09/30
  */
-public class ReviewsFragment : BaseFragment() {
+public class ReviewsFragment : FWBBaseFragment() {
 
     private var recyclerViewReviewsPageList: RecyclerView? = null
     private var adapter: SingleWeiBoInfoAdapter? = null
