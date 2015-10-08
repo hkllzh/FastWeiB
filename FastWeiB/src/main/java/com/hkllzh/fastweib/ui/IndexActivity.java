@@ -5,8 +5,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import com.hkllzh.fastweib.FWBBaseActivity;
 import com.hkllzh.fastweib.R;
@@ -47,6 +50,8 @@ public class IndexActivity extends FWBBaseActivity {
     }
 
     private void setToolbar() {
+
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -68,6 +73,18 @@ public class IndexActivity extends FWBBaseActivity {
         };
         drawerToggle.syncState();
         drawerLayout.setDrawerListener(drawerToggle);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Toast.makeText(mActivity, "onOptionsItemSelected " + item.toString(), Toast.LENGTH_SHORT).show();
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

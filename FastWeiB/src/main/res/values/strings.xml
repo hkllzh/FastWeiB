@@ -6,5 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="index_drawer_open">首页展开</string>
     <string name="index_drawer_close">首页关闭</string>
+    <string name="action_menu_refresh">刷新</string>
+    <string name="action_menu_share">分享</string>
 
 </resources>

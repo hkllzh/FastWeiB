@@ -69,9 +69,7 @@ public class SingleWeiboActivity : FWBBaseActivity() {
         bu3.putString("id", id)
         reviewsFragment3.arguments = bu
 
-
-        val fragments = listOf(reviewsFragment, reviewsFragment2, reviewsFragment3)
-        return fragments
+        return listOf(reviewsFragment, reviewsFragment2, reviewsFragment3)
     }
 
     override fun setListener() {
