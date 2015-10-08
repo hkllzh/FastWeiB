@@ -42,7 +42,6 @@ public class SingleWeiboActivity : FWBBaseActivity() {
     override fun initData() {
         toolbar?.title = "正文"
         setSupportActionBar(toolbar)
-        BaseActivity._H_PX;
 
 
         val fragments = initFragmentPages()

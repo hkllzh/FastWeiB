@@ -10,7 +10,6 @@ import android.widget.FrameLayout;
 
 import com.hkllzh.fastweib.FWBBaseActivity;
 import com.hkllzh.fastweib.R;
-import com.squareup.okhttp.OkHttpClient;
 
 /**
  * 项目首页
@@ -44,9 +43,15 @@ public class IndexActivity extends FWBBaseActivity {
         ft.add(R.id.left_drawer, new IndexLeftDrawerFragment(), "leftDrawer");
         ft.commit();
 
-        setSupportActionBar(toolbar);
+        setToolbar();
+    }
 
-        drawerLayout.setDrawerListener(new ActionBarDrawerToggle(mActivity, drawerLayout, toolbar, R.string.weibosdk_demo_feature_open_api, R.string.weibosdk_demo_share_video_desc) {
+    private void setToolbar() {
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true); //设置返回键可用
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(mActivity, drawerLayout, toolbar, R.string.index_drawer_open, R.string.index_drawer_close) {
             @Override
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
@@ -60,15 +65,9 @@ public class IndexActivity extends FWBBaseActivity {
                 invalidateOptionsMenu();
                 syncState();
             }
-        });
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
-
-        OkHttpClient okHttpClient = new OkHttpClient();
-
-
+        };
+        drawerToggle.syncState();
+        drawerLayout.setDrawerListener(drawerToggle);
     }
 
     @Override

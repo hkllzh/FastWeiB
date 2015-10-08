@@ -4,5 +4,7 @@
     <string name="app_name">FastWeiB</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="index_drawer_open">首页展开</string>
+    <string name="index_drawer_close">首页关闭</string>
 
 </resources>
