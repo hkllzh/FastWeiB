@@ -1,6 +1,6 @@
 package com.hkllzh.fastweib.ui;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -40,10 +40,10 @@ public class IndexContentFragment extends FWBBaseFragment {
     public IndexActivity parentActivity;
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        if (activity instanceof IndexActivity) {
-            parentActivity = (IndexActivity) activity;
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof IndexActivity) {
+            parentActivity = (IndexActivity) context;
         }
 
     }
@@ -92,6 +92,12 @@ public class IndexContentFragment extends FWBBaseFragment {
                         HomeTimelineBean bean = new Gson().fromJson(success, HomeTimelineBean.class);
                         if (TextUtils.isEmpty(max_id)) {
                             wbListAdapter.setData(bean.statuses);
+
+                            if (recyclerViewWbList.getChildCount() > 0 && recyclerViewWbList.getLayoutManager().getPosition(recyclerViewWbList.getChildAt(0)) > 5) {
+                                recyclerViewWbList.scrollToPosition(4);
+                            }
+
+                            recyclerViewWbList.smoothScrollToPosition(0);
                         } else {
                             wbListAdapter.addMoreData(bean.statuses);
                         }
@@ -126,8 +132,12 @@ public class IndexContentFragment extends FWBBaseFragment {
         wbListAdapter.setOnItemClickListener(new BaseRVAdapter.OnItemClickListener<StatusBean>() {
             @Override
             public void onItemClick(StatusBean bean) {
-                startActivity(new Intent(getActivity(), SingleWeiboActivity.class).putExtra("id",bean.id));
+                startActivity(new Intent(getActivity(), SingleWeiboActivity.class).putExtra("id", bean.id));
             }
         });
+    }
+
+    public void actionMenuRefresh() {
+        requestData("");
     }
 }

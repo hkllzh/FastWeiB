@@ -78,7 +78,8 @@ public class IndexActivity extends FWBBaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                ToastUtil.show("action_refresh");
+                IndexContentFragment indexContentFragment = (IndexContentFragment) getSupportFragmentManager().findFragmentByTag("content");
+                indexContentFragment.actionMenuRefresh();
                 break;
             case R.id.action_share:
                 ToastUtil.show("action_share");
