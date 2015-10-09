@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.hkllzh.android.util.toast.ToastUtil
 import com.hkllzh.fastweib.C
 import com.hkllzh.fastweib.FWBBaseActivity
 import com.hkllzh.fastweib.R
@@ -136,7 +137,7 @@ public class SplashActivity : FWBBaseActivity() {
                 if (!TextUtils.isEmpty(code)) {
                     message = message + "\nObtained the code: " + code
                 }
-                Toast.makeText(mActivity, message, Toast.LENGTH_LONG).show()
+                ToastUtil.show(message)
             }
         }
 
