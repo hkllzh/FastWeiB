@@ -4,6 +4,7 @@
     android:id="@+id/rlBG"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/transparent"
     android:clickable="true">
 
     <View
@@ -15,13 +16,12 @@
 
     <ProgressBar
         android:id="@+id/probLoading"
+        style="@android:style/Widget.ProgressBar"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_alignTop="@+id/vBg"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:indeterminateBehavior="repeat"
-        android:indeterminateDuration="500" />
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:id="@+id/tvShowText"
@@ -30,7 +30,7 @@
         android:layout_alignBottom="@+id/vBg"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="20dp"
-        android:text="加载中......"
+        android:text="加载中"
         android:textColor="#FFF0F0F0"
         android:textSize="12sp" />
 

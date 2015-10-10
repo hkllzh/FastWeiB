@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.hkllzh.android.dialog.BaseDialog;
 import com.hkllzh.fastweib.R;
 
 
@@ -28,7 +29,7 @@ public class LoadingDialog extends BaseDialog {
 
     @Override
     protected void initData() {
-        tvShowText.setText("加载中...");
+        tvShowText.setText("加载中");
     }
 
     @Override
@@ -46,7 +47,7 @@ public class LoadingDialog extends BaseDialog {
     }
 
     public void setShowText(String showText) {
-        if (TextUtils.isEmpty(showText)){
+        if (TextUtils.isEmpty(showText)) {
             showText = "加载中...";
         }
         tvShowText.setText(showText);
