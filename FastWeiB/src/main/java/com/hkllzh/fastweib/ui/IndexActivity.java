@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.hkllzh.android.net.okhttp.OkHttpResponse;
 import com.hkllzh.android.util.toast.ToastUtil;
@@ -23,9 +24,15 @@ import com.hkllzh.fastweib.net.FastWBRequest;
 import com.hkllzh.fastweib.net.api.UsersShowApi;
 import com.hkllzh.fastweib.util.image.ImageUtil;
 
+import java.util.Map;
+
+import rx.Observable;
+import rx.functions.Action1;
+import rx.functions.Func1;
+
 /**
  * 项目首页
- * <p>
+ * <p/>
  *
  * @author lizheng -- li396858359@163.com
  */
@@ -98,6 +105,66 @@ public class IndexActivity extends FWBBaseActivity implements NavigationView.OnN
                 ImageUtil.Companion.show(sdvAvatar, jsonObject.get("avatar_hd").getAsString());
                 tvName.setText(jsonObject.get("name").getAsString());
                 tvDescription.setText(jsonObject.get("description").getAsString());
+
+                for (Map.Entry<String, JsonElement> e : jsonObject.entrySet()) {
+                    log.e("IndexActivity 11 ", String.format("key=%s value=%s", e.getKey(), e.getValue().toString()));
+                }
+
+                Observable.from(jsonObject.entrySet())
+                        .map(new Func1<Map.Entry<String, JsonElement>, String>() {
+                            @Override
+                            public String call(Map.Entry<String, JsonElement> e) {
+                                return String.format("key=%s value=%s", e.getKey(), e.getValue().toString());
+                            }
+                        })
+                        .subscribe(new Action1<String>() {
+                            @Override
+                            public void call(String s) {
+                                log.e("IndexActivity 22 ", s);
+                            }
+                        });
+
+//                        .subscribe(new Subscriber<Map.Entry<String, JsonElement>>() {
+//                            @Override
+//                            public void onCompleted() {
+//
+//                            }
+//
+//                            @Override
+//                            public void onError(Throwable e) {
+//
+//                            }
+//
+//                            @Override
+//                            public void onNext(Map.Entry<String, JsonElement> stringJsonElementEntry) {
+//
+//                            }
+//                        });
+
+//                        .subscribe(new Observer<Map.Entry<String, JsonElement>>() {
+//                            @Override
+//                            public void onCompleted() {
+//
+//                            }
+//
+//                            @Override
+//                            public void onError(Throwable e) {
+//
+//                            }
+//
+//                            @Override
+//                            public void onNext(Map.Entry<String, JsonElement> stringJsonElementEntry) {
+//
+//                            }
+//                        });
+
+//                        .subscribe(new Action1<Map.Entry<String, JsonElement>>() {
+//                            @Override
+//                            public void call(Map.Entry<String, JsonElement> e) {
+//                                log.e("IndexActivity 22 ", String.format("key=%s value=%s", e.getKey(), e.getValue().toString()));
+//                            }
+//                        });
+
             }
 
             @Override
