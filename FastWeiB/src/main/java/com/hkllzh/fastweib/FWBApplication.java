@@ -2,17 +2,10 @@ package com.hkllzh.fastweib;
 
 import android.util.Log;
 
-import com.activeandroid.ActiveAndroid;
-import com.activeandroid.Configuration;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.hkllzh.android.AppConfig;
 import com.hkllzh.android.BaseApplication;
 import com.hkllzh.android.util.log.LogInterface;
-import com.hkllzh.fastweib.util.ImageLoaderOptions;
-import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.cache.memory.impl.LRULimitedMemoryCache;
-import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 /**
  * 此程序自定义的Application
@@ -64,7 +57,7 @@ public class FWBApplication extends BaseApplication {
         // initDB();
 
         // 图片加载初始化
-        initImageLoader();
+        // initImageLoader();
     }
 
     @Override
@@ -76,29 +69,29 @@ public class FWBApplication extends BaseApplication {
         return builder.builder();
     }
 
-    private void initDB() {
-        Configuration.Builder configurationBuilder = new Configuration.Builder(this);
+//    private void initDB() {
+//        Configuration.Builder configurationBuilder = new Configuration.Builder(this);
+//
+//        // 增加数据库表
+//        // configurationBuilder.addModelClass(UserLove.class);
+//
+//        ActiveAndroid.initialize(configurationBuilder.create());
+//    }
 
-        // 增加数据库表
-        // configurationBuilder.addModelClass(UserLove.class);
-
-        ActiveAndroid.initialize(configurationBuilder.create());
-    }
-
-    private void initImageLoader() {
-        long maxMemory = Runtime.getRuntime().maxMemory();
-        long cache = maxMemory / 10;// 使用程序可用内存的1/10左右图片加载的内存
-        log.e(TAG, "maxMemory:" + maxMemory + " -- use:" + cache + " -- " + (cache / 1024 / 1024) + "M");
-
-        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(this)
-                .memoryCache(new LRULimitedMemoryCache((int) cache))
-                .discCacheFileNameGenerator(new Md5FileNameGenerator())
-                .discCacheSize(50 * 1024 * 1024)
-                .threadPoolSize(3)
-                .defaultDisplayImageOptions(ImageLoaderOptions.normalOptions())
-                        // .writeDebugLogs()
-                .build();
-
-        ImageLoader.getInstance().init(configuration);
-    }
+//    private void initImageLoader() {
+//        long maxMemory = Runtime.getRuntime().maxMemory();
+//        long cache = maxMemory / 10;// 使用程序可用内存的1/10左右图片加载的内存
+//        log.e(TAG, "maxMemory:" + maxMemory + " -- use:" + cache + " -- " + (cache / 1024 / 1024) + "M");
+//
+//        ImageLoaderConfiguration configuration = new ImageLoaderConfiguration.Builder(this)
+//                .memoryCache(new LRULimitedMemoryCache((int) cache))
+//                .discCacheFileNameGenerator(new Md5FileNameGenerator())
+//                .discCacheSize(50 * 1024 * 1024)
+//                .threadPoolSize(3)
+//                .defaultDisplayImageOptions(ImageLoaderOptions.normalOptions())
+//                        // .writeDebugLogs()
+//                .build();
+//
+//        ImageLoader.getInstance().init(configuration);
+//    }
 }
