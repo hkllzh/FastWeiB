@@ -30,4 +30,6 @@
         <item name="android:layout_height">1dp</item>
     </style>
 
+    <style name="WBTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>
