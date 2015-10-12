@@ -20,9 +20,9 @@ import com.hkllzh.fastweib.net.api.StatusesHome_timelineApi;
 
 /**
  * 首页的内容部分
- * <p/>
+ * <p>
  * lizheng -- 15/1/27
- * <p/>
+ * <p>
  * FastWeiB
  */
 public class IndexContentFragment extends FWBBaseFragment {

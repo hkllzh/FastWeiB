@@ -33,27 +33,7 @@ public class IndexLeftDrawerFragment extends FWBBaseFragment {
     @Override
     protected void initData() {
 
-        FastWBRequest.getInstance().execute(new UsersShowApi(mAccessToken), new OkHttpResponse() {
-            @Override
-            public void start() {
 
-            }
-
-            @Override
-            public void failed(String errorInfo) {
-
-            }
-
-            @Override
-            public void success(final String response) {
-                tvTest.setText(response);
-            }
-
-            @Override
-            public void finish() {
-
-            }
-        });
     }
 
     @Override

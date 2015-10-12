@@ -10,10 +10,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.hkllzh.android.net.okhttp.OkHttpResponse;
 import com.hkllzh.android.util.toast.ToastUtil;
 import com.hkllzh.fastweib.FWBBaseActivity;
 import com.hkllzh.fastweib.R;
+import com.hkllzh.fastweib.net.FastWBRequest;
+import com.hkllzh.fastweib.net.api.UsersShowApi;
+import com.hkllzh.fastweib.util.image.ImageUtil;
 
 /**
  * 项目首页
@@ -27,6 +35,10 @@ public class IndexActivity extends FWBBaseActivity implements NavigationView.OnN
     private DrawerLayout drawer;
     private NavigationView navigationView;
 
+    private SimpleDraweeView sdvAvatar;
+    private TextView tvName;
+    private TextView tvDescription;
+
     @Override
     public int getContentViewId() {
         return R.layout.ac_index;
@@ -37,6 +49,9 @@ public class IndexActivity extends FWBBaseActivity implements NavigationView.OnN
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        sdvAvatar = (SimpleDraweeView) findViewById(R.id.sdvAvatar);
+        tvName = (TextView) findViewById(R.id.tvName);
+        tvDescription = (TextView) findViewById(R.id.tvDescription);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -63,8 +78,33 @@ public class IndexActivity extends FWBBaseActivity implements NavigationView.OnN
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(R.id.content_frame, new IndexContentFragment(), "content");
-        // ft.add(R.id.left_drawer, new IndexLeftDrawerFragment(), "leftDrawer");
         ft.commit();
+
+        // 个人信息
+        FastWBRequest.getInstance().execute(new UsersShowApi(mAccessToken), new OkHttpResponse() {
+            @Override
+            public void start() {
+
+            }
+
+            @Override
+            public void failed(String errorInfo) {
+
+            }
+
+            @Override
+            public void success(final String response) {
+                JsonObject jsonObject = new Gson().fromJson(response, JsonObject.class);
+                ImageUtil.Companion.show(sdvAvatar, jsonObject.get("avatar_hd").getAsString());
+                tvName.setText(jsonObject.get("name").getAsString());
+                tvDescription.setText(jsonObject.get("description").getAsString());
+            }
+
+            @Override
+            public void finish() {
+
+            }
+        });
 
     }
 
