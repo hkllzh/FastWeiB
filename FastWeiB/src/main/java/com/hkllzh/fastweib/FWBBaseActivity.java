@@ -24,16 +24,9 @@ public abstract class FWBBaseActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAccessToken = AccessTokenKeeper.readAccessToken(mActivity);
-
-        loadIntentData();
-        setContentView(getContentViewId());
-        initView();
         initData();
         setListener();
 
-    }
-
-    protected void loadIntentData() {
     }
 
     protected void showLoading() {
@@ -66,10 +59,6 @@ public abstract class FWBBaseActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
-
-    public abstract int getContentViewId();
-
-    protected abstract void initView();
 
     protected abstract void initData();
 

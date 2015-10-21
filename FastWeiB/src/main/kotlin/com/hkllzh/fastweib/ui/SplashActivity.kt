@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.hkllzh.android.ui.BaseActivity
 import com.hkllzh.android.util.toast.ToastUtil
 import com.hkllzh.fastweib.C
 import com.hkllzh.fastweib.FWBBaseActivity
@@ -53,9 +54,7 @@ public class SplashActivity : FWBBaseActivity() {
             // 进入主程序
             Handler().postDelayed(object : Runnable {
                 override fun run() {
-                    log.e("SplashActivity", "// 进入主程序// 进入主程序// 进入主程序")
-                    startActivity(Intent(mActivity, IndexActivity::class.java))
-                    finish()
+                    ttt()
                     // startActivity(new Intent(mActivity, TestWebViewActivity.class));
 
                 }
@@ -66,13 +65,17 @@ public class SplashActivity : FWBBaseActivity() {
         // demo 1
         var list = listOf(1, 123, 4, 32, 4, 12, 4, 324, 23, 4, 324, 32, 41)
         for ((k, v) in list.withIndex()) {
-            log.i("SplashActivity", "k->$k, v->$v")
+            BaseActivity.log.i("SplashActivity", "k->$k, v->$v")
         }
 
         // demo 2
         testLambdas();
+    }
 
-
+    fun ttt(){
+        BaseActivity.log.e("SplashActivity", "// 进入主程序// 进入主程序// 进入主程序")
+        startActivity(Intent(mActivity, IndexActivity::class.java))
+        finish()
     }
 
     private fun testLambdas() {

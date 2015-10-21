@@ -36,10 +36,7 @@ public abstract class FWBBaseFragment extends BaseFragment {
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(getContentViewId(), container, false);
-    }
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -86,10 +83,6 @@ public abstract class FWBBaseFragment extends BaseFragment {
     protected <T extends View> T findViewById(@IdRes int id) {
         return (T) getView().findViewById(id);
     }
-
-    public abstract int getContentViewId();
-
-    protected abstract void initView();
 
     protected abstract void initData();
 
