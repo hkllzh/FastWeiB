@@ -11,10 +11,10 @@
 
     <color name="line">#DDDDDD</color>
 
-    <color name="refresh_color_1">#2196f3</color>
-    <color name="refresh_color_2">#1976d2</color>
-    <color name="refresh_color_3">#2196f3</color>
-    <color name="refresh_color_4">#1976d2</color>
+    <color name="refresh_color_1">#086788</color>
+    <color name="refresh_color_2">#F0C808</color>
+    <color name="refresh_color_3">#FFF1D0</color>
+    <color name="refresh_color_4">#DD1C1A</color>
 
     <!--<color name="refresh_color_1">#E51C23</color>-->
     <!--<color name="refresh_color_2">#9C27B0</color>-->
