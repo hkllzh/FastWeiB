@@ -2,7 +2,7 @@ package com.hkllzh.fastweib.ui
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.hkllzh.android.net.okhttp.OkHttpResponse
+import com.hkllzh.android.net.ResponseInterface
 import com.hkllzh.android.util.log.LogHandler
 import com.hkllzh.fastweib.FWBBaseFragment
 import com.hkllzh.fastweib.R
@@ -35,7 +35,7 @@ public class ReviewsFragment : FWBBaseFragment() {
         recyclerViewReviewsPageList!!.adapter = adapter
 
 
-        FastWBRequest.getInstance().execute(StatusesRepost_timeline(mAccessToken, arguments.getString("id")), object : OkHttpResponse() {
+        FastWBRequest.getInstance().execute(StatusesRepost_timeline(mAccessToken, arguments.getString("id")), object : ResponseInterface {
             override fun start() {
                 showLoading()
             }

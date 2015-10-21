@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
+import com.hkllzh.android.net.ResponseInterface;
 import com.hkllzh.android.net.okhttp.OkHttpResponse;
 import com.hkllzh.fastweib.BaseRVAdapter;
 import com.hkllzh.fastweib.FWBBaseFragment;
@@ -74,7 +75,7 @@ public class IndexContentFragment extends FWBBaseFragment {
 
     private void requestData(final String max_id) {
 
-        FastWBRequest.getInstance().execute(new StatusesHome_timelineApi(mAccessToken, max_id), new OkHttpResponse() {
+        FastWBRequest.getInstance().execute(new StatusesHome_timelineApi(mAccessToken, max_id), new ResponseInterface() {
                     @Override
                     public void start() {
                         if (TextUtils.isEmpty(max_id)) {

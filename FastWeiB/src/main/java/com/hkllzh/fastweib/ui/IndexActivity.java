@@ -16,6 +16,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.hkllzh.android.net.ResponseInterface;
 import com.hkllzh.android.net.okhttp.OkHttpResponse;
 import com.hkllzh.android.util.toast.ToastUtil;
 import com.hkllzh.fastweib.FWBBaseActivity;
@@ -88,7 +89,7 @@ public class IndexActivity extends FWBBaseActivity implements NavigationView.OnN
         ft.commit();
 
         // 个人信息
-        FastWBRequest.getInstance().execute(new UsersShowApi(mAccessToken), new OkHttpResponse() {
+        FastWBRequest.getInstance().execute(new UsersShowApi(mAccessToken), new ResponseInterface() {
             @Override
             public void start() {
 
