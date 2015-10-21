@@ -8,8 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 
 import com.google.gson.Gson;
-import com.hkllzh.android.net.ResponseInterface;
-import com.hkllzh.android.net.okhttp.OkHttpResponse;
+import com.hkllzh.android.net.APIInterface;
 import com.hkllzh.fastweib.BaseRVAdapter;
 import com.hkllzh.fastweib.FWBBaseFragment;
 import com.hkllzh.fastweib.R;
@@ -74,45 +73,45 @@ public class IndexContentFragment extends FWBBaseFragment {
     }
 
     private void requestData(final String max_id) {
-
-        FastWBRequest.getInstance().execute(new StatusesHome_timelineApi(mAccessToken, max_id), new ResponseInterface() {
-                    @Override
-                    public void start() {
-                        if (TextUtils.isEmpty(max_id)) {
-                            showLoading();
-                        }
-                    }
-
-                    @Override
-                    public void failed(final String errorInfo) {
-
-                    }
-
-                    @Override
-                    public void success(final String success) {
-                        HomeTimelineBean bean = new Gson().fromJson(success, HomeTimelineBean.class);
-                        if (TextUtils.isEmpty(max_id)) {
-                            wbListAdapter.setData(bean.statuses);
-
-                            if (recyclerViewWbList.getChildCount() > 0 && recyclerViewWbList.getLayoutManager().getPosition(recyclerViewWbList.getChildAt(0)) > 5) {
-                                recyclerViewWbList.scrollToPosition(4);
-                            }
-
-                            recyclerViewWbList.smoothScrollToPosition(0);
-                        } else {
-                            wbListAdapter.addMoreData(bean.statuses);
-                        }
-                        mMax_id = bean.max_id;
-                    }
-
-                    @Override
-                    public void finish() {
-                        dismissLoading();
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                }
-
-        );
+        FastWBRequest.getInstance().execute(new StatusesHome_timelineApi(mAccessToken, max_id), this);
+//        FastWBRequest.getInstance().execute(new StatusesHome_timelineApi(mAccessToken, max_id), new ResponseInterface() {
+//                    @Override
+//                    public void start() {
+//                        if (TextUtils.isEmpty(max_id)) {
+//                            showLoading();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void failed(final String errorInfo) {
+//
+//                    }
+//
+//                    @Override
+//                    public void success(final String success) {
+//                        HomeTimelineBean bean = new Gson().fromJson(success, HomeTimelineBean.class);
+//                        if (TextUtils.isEmpty(max_id)) {
+//                            wbListAdapter.setData(bean.statuses);
+//
+//                            if (recyclerViewWbList.getChildCount() > 0 && recyclerViewWbList.getLayoutManager().getPosition(recyclerViewWbList.getChildAt(0)) > 5) {
+//                                recyclerViewWbList.scrollToPosition(4);
+//                            }
+//
+//                            recyclerViewWbList.smoothScrollToPosition(0);
+//                        } else {
+//                            wbListAdapter.addMoreData(bean.statuses);
+//                        }
+//                        mMax_id = bean.max_id;
+//                    }
+//
+//                    @Override
+//                    public void finish() {
+//                        dismissLoading();
+//                        swipeRefreshLayout.setRefreshing(false);
+//                    }
+//                }
+//
+//        );
     }
 
     @Override
@@ -141,5 +140,40 @@ public class IndexContentFragment extends FWBBaseFragment {
 
     public void actionMenuRefresh() {
         requestData("");
+    }
+
+    @Override
+    public void reqStart(APIInterface apiInterface) {
+        super.reqStart(apiInterface);
+        StatusesHome_timelineApi api = (StatusesHome_timelineApi) apiInterface;
+        if (TextUtils.isEmpty(api.mMaxId)) {
+            showLoading();
+        }
+    }
+
+    @Override
+    public void reqSuccess(APIInterface apiInterface, String response) {
+        super.reqSuccess(apiInterface, response);
+        StatusesHome_timelineApi api = (StatusesHome_timelineApi) apiInterface;
+        HomeTimelineBean bean = new Gson().fromJson(response, HomeTimelineBean.class);
+        if (TextUtils.isEmpty(api.mMaxId)) {
+            wbListAdapter.setData(bean.statuses);
+
+            if (recyclerViewWbList.getChildCount() > 0 && recyclerViewWbList.getLayoutManager().getPosition(recyclerViewWbList.getChildAt(0)) > 5) {
+                recyclerViewWbList.scrollToPosition(4);
+            }
+
+            recyclerViewWbList.smoothScrollToPosition(0);
+        } else {
+            wbListAdapter.addMoreData(bean.statuses);
+        }
+        mMax_id = bean.max_id;
+    }
+
+    @Override
+    public void reqFinish(APIInterface apiInterface) {
+        super.reqFinish(apiInterface);
+        dismissLoading();
+        swipeRefreshLayout.setRefreshing(false);
     }
 }

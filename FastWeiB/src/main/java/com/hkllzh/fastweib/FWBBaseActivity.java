@@ -2,6 +2,8 @@ package com.hkllzh.fastweib;
 
 import android.os.Bundle;
 
+import com.hkllzh.android.net.APIInterface;
+import com.hkllzh.android.net.ResponseInterface;
 import com.hkllzh.android.ui.BaseActivity;
 import com.hkllzh.fastweib.auth.AccessTokenKeeper;
 import com.hkllzh.fastweib.view.LoadingDialog;
@@ -15,7 +17,7 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
  * <p/>
  * com.hkllzh.fastweib
  */
-public abstract class FWBBaseActivity extends BaseActivity {
+public abstract class FWBBaseActivity extends BaseActivity implements ResponseInterface {
     private LoadingDialog loadingDialog;
     // 微博token类
     protected Oauth2AccessToken mAccessToken;
@@ -49,7 +51,6 @@ public abstract class FWBBaseActivity extends BaseActivity {
         }
     }
 
-
     protected void dismissLoading() {
         try {
             if (null != loadingDialog && loadingDialog.isShowing()) {
@@ -63,5 +64,25 @@ public abstract class FWBBaseActivity extends BaseActivity {
     protected abstract void initData();
 
     protected abstract void setListener();
+
+    @Override
+    public void reqStart(APIInterface apiInterface) {
+
+    }
+
+    @Override
+    public void reqFinish(APIInterface apiInterface) {
+
+    }
+
+    @Override
+    public void reqFailed(APIInterface apiInterface, String failedMessage) {
+
+    }
+
+    @Override
+    public void reqSuccess(APIInterface apiInterface, String response) {
+
+    }
 
 }

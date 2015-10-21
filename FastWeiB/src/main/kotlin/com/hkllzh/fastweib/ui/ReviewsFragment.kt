@@ -2,8 +2,6 @@ package com.hkllzh.fastweib.ui
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.hkllzh.android.net.ResponseInterface
-import com.hkllzh.android.util.log.LogHandler
 import com.hkllzh.fastweib.FWBBaseFragment
 import com.hkllzh.fastweib.R
 import com.hkllzh.fastweib.adapter.SingleWeiBoInfoAdapter
@@ -35,24 +33,26 @@ public class ReviewsFragment : FWBBaseFragment() {
         recyclerViewReviewsPageList!!.adapter = adapter
 
 
-        FastWBRequest.getInstance().execute(StatusesRepost_timeline(mAccessToken, arguments.getString("id")), object : ResponseInterface {
-            override fun start() {
-                showLoading()
-            }
+        //        FastWBRequest.getInstance().execute(StatusesRepost_timeline(mAccessToken, arguments.getString("id")), object : ResponseInterface {
+        //            override fun start() {
+        //                showLoading()
+        //            }
+        //
+        //            override fun failed(failedMessage: String?) {
+        //                LogHandler.getInstance().e("RFragment - failedMessage", failedMessage)
+        //            }
+        //
+        //            override fun success(response: String?) {
+        //                LogHandler.getInstance().e("RFragment - success", response)
+        //            }
+        //
+        //            override fun finish() {
+        //                dismissLoading()
+        //            }
+        //
+        //        })
 
-            override fun failed(failedMessage: String?) {
-                LogHandler.getInstance().e("RFragment - failedMessage", failedMessage)
-            }
-
-            override fun success(response: String?) {
-                LogHandler.getInstance().e("RFragment - success", response)
-            }
-
-            override fun finish() {
-                dismissLoading()
-            }
-
-        })
+        FastWBRequest.getInstance().execute(StatusesRepost_timeline(mAccessToken, arguments.getString("id")), this)
 
     }
 

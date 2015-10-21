@@ -32,7 +32,7 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
  */
 public class StatusesHome_timelineApi extends FastWBApi {
 
-    private String mMaxId;
+    public String mMaxId;
 
     public StatusesHome_timelineApi(Oauth2AccessToken accessToken, String max_id) {
         super(accessToken);

@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hkllzh.android.net.APIInterface;
+import com.hkllzh.android.net.ResponseInterface;
 import com.hkllzh.android.ui.BaseFragment;
 import com.hkllzh.fastweib.auth.AccessTokenKeeper;
 import com.hkllzh.fastweib.view.LoadingDialog;
@@ -19,7 +21,7 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
  * <p/>
  * FastWeiB
  */
-public abstract class FWBBaseFragment extends BaseFragment {
+public abstract class FWBBaseFragment extends BaseFragment implements ResponseInterface{
 
     private FWBBaseActivity mBaseActivity;
 
@@ -87,4 +89,24 @@ public abstract class FWBBaseFragment extends BaseFragment {
     protected abstract void initData();
 
     protected abstract void setListener();
+
+    @Override
+    public void reqStart(APIInterface apiInterface) {
+
+    }
+
+    @Override
+    public void reqFailed(APIInterface apiInterface, String failedMessage) {
+
+    }
+
+    @Override
+    public void reqSuccess(APIInterface apiInterface, String response) {
+
+    }
+
+    @Override
+    public void reqFinish(APIInterface apiInterface) {
+
+    }
 }
