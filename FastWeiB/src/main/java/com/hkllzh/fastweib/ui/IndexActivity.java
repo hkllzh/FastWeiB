@@ -1,5 +1,6 @@
 package com.hkllzh.fastweib.ui;
 
+import android.content.Intent;
 import android.os.Build;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -82,100 +83,18 @@ public class IndexActivity extends FWBBaseActivity implements NavigationView.OnN
 
         // 个人信息
         FastWBRequest.getInstance().execute(new UsersShowApi(mAccessToken), this);
-//        FastWBRequest.getInstance().execute(new UsersShowApi(mAccessToken), new ResponseInterface() {
-//            @Override
-//            public void start() {
-//
-//            }
-//
-//            @Override
-//            public void failed(String errorInfo) {
-//
-//            }
-//
-//            @Override
-//            public void success(final String response) {
-//                JsonObject jsonObject = new Gson().fromJson(response, JsonObject.class);
-//                ImageUtil.Companion.show(sdvAvatar, jsonObject.get("avatar_hd").getAsString());
-//                tvName.setText(jsonObject.get("name").getAsString());
-//                tvDescription.setText(jsonObject.get("description").getAsString());
-//
-//                for (Map.Entry<String, JsonElement> e : jsonObject.entrySet()) {
-//                    log.e("IndexActivity 11 ", String.format("key=%s value=%s", e.getKey(), e.getValue().toString()));
-//                }
-//
-//                Observable.from(jsonObject.entrySet())
-//                        .map(new Func1<Map.Entry<String, JsonElement>, String>() {
-//                            @Override
-//                            public String call(Map.Entry<String, JsonElement> e) {
-//                                return String.format("key=%s value=%s", e.getKey(), e.getValue().toString());
-//                            }
-//                        })
-//                        .subscribe(new Action1<String>() {
-//                            @Override
-//                            public void call(String s) {
-//                                log.e("IndexActivity 22 ", s);
-//                            }
-//                        });
-//
-////                        .subscribe(new Subscriber<Map.Entry<String, JsonElement>>() {
-////                            @Override
-////                            public void onCompleted() {
-////
-////                            }
-////
-////                            @Override
-////                            public void onError(Throwable e) {
-////
-////                            }
-////
-////                            @Override
-////                            public void onNext(Map.Entry<String, JsonElement> stringJsonElementEntry) {
-////
-////                            }
-////                        });
-//
-////                        .subscribe(new Observer<Map.Entry<String, JsonElement>>() {
-////                            @Override
-////                            public void onCompleted() {
-////
-////                            }
-////
-////                            @Override
-////                            public void onError(Throwable e) {
-////
-////                            }
-////
-////                            @Override
-////                            public void onNext(Map.Entry<String, JsonElement> stringJsonElementEntry) {
-////
-////                            }
-////                        });
-//
-////                        .subscribe(new Action1<Map.Entry<String, JsonElement>>() {
-////                            @Override
-////                            public void call(Map.Entry<String, JsonElement> e) {
-////                                log.e("IndexActivity 22 ", String.format("key=%s value=%s", e.getKey(), e.getValue().toString()));
-////                            }
-////                        });
-//
-//            }
-//
-//            @Override
-//            public void finish() {
-//
-//            }
-//        });
 
     }
 
     @Override
     public void reqSuccess(APIInterface apiInterface, String response) {
         super.reqSuccess(apiInterface, response);
-        JsonObject jsonObject = new Gson().fromJson(response, JsonObject.class);
-        ImageUtil.Companion.show(sdvAvatar, jsonObject.get("avatar_hd").getAsString());
-        tvName.setText(jsonObject.get("name").getAsString());
-        tvDescription.setText(jsonObject.get("description").getAsString());
+        if (apiInterface instanceof UsersShowApi) {
+            JsonObject jsonObject = new Gson().fromJson(response, JsonObject.class);
+            ImageUtil.Companion.show(sdvAvatar, jsonObject.get("avatar_hd").getAsString());
+            tvName.setText(jsonObject.get("name").getAsString());
+            tvDescription.setText(jsonObject.get("description").getAsString());
+        }
     }
 
     @Override
@@ -208,22 +127,13 @@ public class IndexActivity extends FWBBaseActivity implements NavigationView.OnN
     public boolean onNavigationItemSelected(MenuItem menuItem) {
         // Handle navigation view item clicks here.
         int id = menuItem.getItemId();
-
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        } else {
-
+        switch (id) {
+            case R.id.nav_my_weib:
+                // 我的微博
+                startActivity(new Intent(this, MyWeiBActivity.class));
+                break;
         }
+
 
         // DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

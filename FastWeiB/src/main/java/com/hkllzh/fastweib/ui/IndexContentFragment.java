@@ -74,44 +74,6 @@ public class IndexContentFragment extends FWBBaseFragment {
 
     private void requestData(final String max_id) {
         FastWBRequest.getInstance().execute(new StatusesHome_timelineApi(mAccessToken, max_id), this);
-//        FastWBRequest.getInstance().execute(new StatusesHome_timelineApi(mAccessToken, max_id), new ResponseInterface() {
-//                    @Override
-//                    public void start() {
-//                        if (TextUtils.isEmpty(max_id)) {
-//                            showLoading();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void failed(final String errorInfo) {
-//
-//                    }
-//
-//                    @Override
-//                    public void success(final String success) {
-//                        HomeTimelineBean bean = new Gson().fromJson(success, HomeTimelineBean.class);
-//                        if (TextUtils.isEmpty(max_id)) {
-//                            wbListAdapter.setData(bean.statuses);
-//
-//                            if (recyclerViewWbList.getChildCount() > 0 && recyclerViewWbList.getLayoutManager().getPosition(recyclerViewWbList.getChildAt(0)) > 5) {
-//                                recyclerViewWbList.scrollToPosition(4);
-//                            }
-//
-//                            recyclerViewWbList.smoothScrollToPosition(0);
-//                        } else {
-//                            wbListAdapter.addMoreData(bean.statuses);
-//                        }
-//                        mMax_id = bean.max_id;
-//                    }
-//
-//                    @Override
-//                    public void finish() {
-//                        dismissLoading();
-//                        swipeRefreshLayout.setRefreshing(false);
-//                    }
-//                }
-//
-//        );
     }
 
     @Override

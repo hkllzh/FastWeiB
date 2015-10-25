@@ -40,8 +40,8 @@ public class UsersShowApi extends FastWBApi {
     @Override
     public RequestParams requestParams() {
         RequestParams params = new RequestParams();
-        params.put("access_token", mAccessToken.getToken());
-        params.put("uid", mAccessToken.getUid());
+        params.put("access_token", getmAccessToken().getToken());
+        params.put("uid", getmAccessToken().getUid());
         return params;
     }
 }

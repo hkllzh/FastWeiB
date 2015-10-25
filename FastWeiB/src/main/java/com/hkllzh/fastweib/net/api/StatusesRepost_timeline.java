@@ -52,7 +52,7 @@ public class StatusesRepost_timeline extends FastWBApi {
     @Override
     public RequestParams requestParams() {
         RequestParams params = new RequestParams();
-        params.put("access_token", mAccessToken.getToken());
+        params.put("access_token", getmAccessToken().getToken());
         params.put("id", mId);
         return params;
     }

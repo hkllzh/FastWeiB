@@ -8,5 +8,6 @@
     <string name="index_drawer_close">首页关闭</string>
     <string name="action_menu_refresh">刷新</string>
     <string name="action_menu_share">分享</string>
+    <string name="my_weib">我的微博</string>
 
 </resources>

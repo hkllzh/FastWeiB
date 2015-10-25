@@ -52,7 +52,7 @@ public class StatusesHome_timelineApi extends FastWBApi {
     @Override
     public RequestParams requestParams() {
         RequestParams params = new RequestParams();
-        params.put("access_token", mAccessToken.getToken());
+        params.put("access_token", getmAccessToken().getToken());
         params.put("max_id", TextUtils.isEmpty(mMaxId) ? "0" : mMaxId);
         return params;
     }
