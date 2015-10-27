@@ -1,11 +1,13 @@
-package com.hkllzh.fastweib.net.api;
+package com.hkllzh.fastweib.net.api
 
-import com.hkllzh.android.net.RequestParams;
-import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+import com.hkllzh.android.net.APIInterface
+import com.hkllzh.android.net.RequestParams
+import com.hkllzh.fastweib.net.FastWBApi
+import com.sina.weibo.sdk.auth.Oauth2AccessToken
 
 /**
  * statuses/repost_timeline
- * <pre>
+ *
  * 获取指定微博的转发微博列表
  * 网页地址 http://open.weibo.com/wiki/2/statuses/repost_timeline
  * URL https://api.weibo.com/2/statuses/repost_timeline.json
@@ -27,33 +29,25 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
  * count	false	int	单页返回的记录条数，最大不超过200，默认为20。
  * page	false	int	返回结果的页码，默认为1。
  * filter_by_author	false	int	作者筛选类型，0：全部、1：我关注的人、2：陌生人，默认为0。
- * </pre>
- * <p/>
+ *
+ *
+ *
  * lizheng -- 2015/09/30
  */
-public class StatusesRepost_timeline extends FastWBApi {
-    private String mId;
+class StatusesRepost_timeline(accessToken: Oauth2AccessToken, private val mId: String) : FastWBApi(accessToken) {
 
-    public StatusesRepost_timeline(Oauth2AccessToken accessToken, String id) {
-        super(accessToken);
-        mId = id;
+    override fun requestURL(): String {
+        return "https://api.weibo.com/2/statuses/repost_timeline.json"
     }
 
-    @Override
-    public String requestURL() {
-        return "https://api.weibo.com/2/statuses/repost_timeline.json";
+    override fun requestMethod(): APIInterface.RequestMethod {
+        return APIInterface.RequestMethod.GET
     }
 
-    @Override
-    public RequestMethod requestMethod() {
-        return RequestMethod.GET;
-    }
-
-    @Override
-    public RequestParams requestParams() {
-        RequestParams params = new RequestParams();
-        params.put("access_token", getmAccessToken().getToken());
-        params.put("id", mId);
-        return params;
+    override fun requestParams(): RequestParams {
+        val params = RequestParams()
+        params.put("access_token", mAccessToken?.token)
+        params.put("id", mId)
+        return params
     }
 }

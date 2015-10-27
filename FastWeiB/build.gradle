@@ -76,6 +76,7 @@ dependencies {
     compile 'com.facebook.fresco:fresco:0.8.0'
 
     compile 'org.jetbrains.kotlin:kotlin-stdlib:0.14.451'
+    // compile 'org.jetbrains.kotlin:kotlin-android-extensions:0.14.451'
 
     // sqlite orm库
     // compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'

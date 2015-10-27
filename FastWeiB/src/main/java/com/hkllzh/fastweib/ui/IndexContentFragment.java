@@ -73,7 +73,8 @@ public class IndexContentFragment extends FWBBaseFragment {
     }
 
     private void requestData(final String max_id) {
-        FastWBRequest.getInstance().execute(new StatusesHome_timelineApi(mAccessToken, max_id), this);
+        StatusesHome_timelineApi api = new StatusesHome_timelineApi(mAccessToken, true, max_id);
+        FastWBRequest.getInstance().execute(api, this);
     }
 
     @Override
@@ -85,6 +86,7 @@ public class IndexContentFragment extends FWBBaseFragment {
                 requestData("");
             }
         });
+
         wbListAdapter.setLoadMore(new BaseRVAdapter.LoadMore() {
             @Override
             public void loadMore() {
@@ -108,7 +110,7 @@ public class IndexContentFragment extends FWBBaseFragment {
     public void reqStart(APIInterface apiInterface) {
         super.reqStart(apiInterface);
         StatusesHome_timelineApi api = (StatusesHome_timelineApi) apiInterface;
-        if (TextUtils.isEmpty(api.mMaxId)) {
+        if (TextUtils.isEmpty(api.mMaxId) && api.getIsShowLoaddingDialog()) {
             showLoading();
         }
     }

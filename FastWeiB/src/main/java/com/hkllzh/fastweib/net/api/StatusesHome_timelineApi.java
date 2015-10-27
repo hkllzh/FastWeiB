@@ -3,7 +3,10 @@ package com.hkllzh.fastweib.net.api;
 import android.text.TextUtils;
 
 import com.hkllzh.android.net.RequestParams;
+import com.hkllzh.fastweib.net.FastWBApi;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * 获取当前登录用户及其所关注用户的最新微博
@@ -37,6 +40,11 @@ public class StatusesHome_timelineApi extends FastWBApi {
     public StatusesHome_timelineApi(Oauth2AccessToken accessToken, String max_id) {
         super(accessToken);
         this.mMaxId = max_id;
+    }
+
+    public StatusesHome_timelineApi(@NotNull Oauth2AccessToken accessToken, boolean isShowLoaddingDialog, String mMaxId) {
+        super(accessToken, isShowLoaddingDialog);
+        this.mMaxId = mMaxId;
     }
 
     @Override
