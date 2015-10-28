@@ -26,16 +26,8 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken
  */
 
 class UsersShowApi : FastWBApi {
-
-    var testTwoId: String? = null
-
     constructor(accessToken: Oauth2AccessToken) : super(accessToken) {
     }
-
-    constructor(mAccessToken: Oauth2AccessToken, testTwoId: String) : super(mAccessToken) {
-        this.testTwoId = testTwoId
-    }
-
     override fun requestURL(): String {
         return "https://api.weibo.com/2/users/show.json"
     }
