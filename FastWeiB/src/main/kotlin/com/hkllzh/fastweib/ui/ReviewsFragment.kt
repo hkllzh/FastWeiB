@@ -2,6 +2,9 @@ package com.hkllzh.fastweib.ui
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.hkllzh.android.net.APIInterface
+import com.hkllzh.android.ui.BaseFragment
+import com.hkllzh.android.util.log.LogHandler
 import com.hkllzh.fastweib.FWBBaseFragment
 import com.hkllzh.fastweib.R
 import com.hkllzh.fastweib.adapter.SingleWeiBoInfoAdapter
@@ -32,32 +35,14 @@ public class ReviewsFragment : FWBBaseFragment() {
 
         recyclerViewReviewsPageList!!.adapter = adapter
 
-
-        //        FastWBRequest.getInstance().execute(StatusesRepost_timeline(mAccessToken, arguments.getString("id")), object : ResponseInterface {
-        //            override fun start() {
-        //                showLoading()
-        //            }
-        //
-        //            override fun failed(failedMessage: String?) {
-        //                LogHandler.getInstance().e("RFragment - failedMessage", failedMessage)
-        //            }
-        //
-        //            override fun success(response: String?) {
-        //                LogHandler.getInstance().e("RFragment - success", response)
-        //            }
-        //
-        //            override fun finish() {
-        //                dismissLoading()
-        //            }
-        //
-        //        })
-
         FastWBRequest.getInstance().execute(StatusesRepost_timeline(mAccessToken, arguments.getString("id")), this)
-
     }
 
     override fun setListener() {
 
     }
 
+    override fun reqSuccess(apiInterface: APIInterface?, response: String?) {
+        BaseFragment.log.e(LogHandler.makeLogTag(ReviewsFragment::class.java), "response:" + response)
+    }
 }

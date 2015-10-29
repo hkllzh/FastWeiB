@@ -11,6 +11,7 @@ import com.hkllzh.android.net.APIInterface;
 import com.hkllzh.android.net.ResponseInterface;
 import com.hkllzh.android.ui.BaseFragment;
 import com.hkllzh.fastweib.auth.AccessTokenKeeper;
+import com.hkllzh.fastweib.net.FastWBApi;
 import com.hkllzh.fastweib.view.LoadingDialog;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
@@ -92,7 +93,12 @@ public abstract class FWBBaseFragment extends BaseFragment implements ResponseIn
 
     @Override
     public void reqStart(APIInterface apiInterface) {
-
+        if (apiInterface instanceof FastWBApi) {
+            FastWBApi api = (FastWBApi) apiInterface;
+            if (api.getIsShowLoaddingDialog()) {
+                showLoading();
+            }
+        }
     }
 
     @Override
@@ -107,6 +113,11 @@ public abstract class FWBBaseFragment extends BaseFragment implements ResponseIn
 
     @Override
     public void reqFinish(APIInterface apiInterface) {
-
+        if (apiInterface instanceof FastWBApi) {
+            FastWBApi api = (FastWBApi) apiInterface;
+            if (api.getIsShowLoaddingDialog()) {
+                dismissLoading();
+            }
+        }
     }
 }

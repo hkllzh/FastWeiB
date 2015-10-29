@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar
 import com.google.gson.Gson
 import com.hkllzh.android.net.APIInterface
 import com.hkllzh.android.ui.BaseActivity
+import com.hkllzh.android.util.log.LogHandler
 import com.hkllzh.fastweib.FWBBaseActivity
 import com.hkllzh.fastweib.R
 import com.hkllzh.fastweib.adapter.WBListAdapter
@@ -57,7 +58,7 @@ public class MyWeiBActivity : FWBBaseActivity() {
     }
 
     override fun reqSuccess(apiInterface: APIInterface?, response: String?) {
-        BaseActivity.log.e(makeLogTag(MyWeiBActivity::class.java), "response:" + response)
+        BaseActivity.log.e(LogHandler.makeLogTag(MyWeiBActivity::class.java), "response:" + response)
         val bean = Gson().fromJson(response, HomeTimelineBean::class.java)
         wbListAdapter?.setData(bean.statuses)
     }

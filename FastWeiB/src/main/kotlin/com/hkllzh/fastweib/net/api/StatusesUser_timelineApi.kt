@@ -60,7 +60,6 @@ class StatusesUser_timelineApi(accessToken: Oauth2AccessToken) : FastWBApi(acces
         val p = RequestParams()
         p.put("access_token",mAccessToken?.token)
         p.put("uid",mAccessToken?.uid)
-        p.put("trim_user","0")
         return p
     }
 }
